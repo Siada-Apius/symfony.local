@@ -1,0 +1,58 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Playlist</h1>
+
+    <table class="record_properties table table-bordered">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ entity.title }}</td>
+            </tr>
+            <tr>
+                <th>Author</th>
+                <td>{{ entity.author }}</td>
+            </tr>
+            <tr>
+                <th>Album</th>
+                <td>{{ entity.album }}</td>
+            </tr>
+            <tr>
+                <th>Year</th>
+                <td>{{ entity.year }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ entity.description }}</td>
+            </tr>
+            <tr>
+                <th>Category</th>
+                <td>{{ entity.category }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions nav-list">
+    <li>
+        <a href="{{ path('task') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('task_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('task_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+    </li>
+</ul>
+{% endblock %}

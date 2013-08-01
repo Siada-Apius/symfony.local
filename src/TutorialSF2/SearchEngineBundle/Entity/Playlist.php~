@@ -1,0 +1,60 @@
+<?php
+
+namespace TutorialSF2\SearchEngineBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Playlist
+ *
+ * @ORM\Table(name="playlist")
+ * @ORM\Entity
+ */
+class Playlist
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255, nullable=false)
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="author", type="string", length=255, nullable=false)
+     */
+    private $author;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="album", type="string", length=255, nullable=false)
+     */
+    private $album;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="year", type="string", length=255, nullable=false)
+     */
+    private $year;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=255, nullable=false)
+     */
+    private $description;
+
+
+}

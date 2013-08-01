@@ -1,0 +1,43 @@
+Medias:
+    type: entity
+    table: medias
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        legend:
+            type: string
+            length: 120
+            fixed: false
+            nullable: true
+        picture:
+            type: string
+            length: 150
+            fixed: false
+            nullable: true
+        state:
+            type: boolean
+            nullable: true
+        dateCreated:
+            type: datetime
+            nullable: true
+            column: date_created
+        dateUpdated:
+            type: datetime
+            nullable: true
+            column: date_updated
+    manyToOne:
+        film:
+            targetEntity: Film
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                film_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,39 @@
+Commentaire:
+    type: entity
+    table: commentaire
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        nom:
+            type: string
+            length: 120
+            fixed: false
+            nullable: true
+        email:
+            type: string
+            length: 120
+            fixed: false
+            nullable: true
+        content:
+            type: text
+            nullable: true
+        dateCreated:
+            type: datetime
+            nullable: false
+            column: date_created
+    manyToOne:
+        film:
+            targetEntity: Film
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                film_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,7 @@
+parameters:
+#    tutorial_sf2_search_engine.example.class: TutorialSF2\SearchEngineBundle\Example
+
+services:
+#    tutorial_sf2_search_engine.example:
+#        class: %tutorial_sf2_search_engine.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

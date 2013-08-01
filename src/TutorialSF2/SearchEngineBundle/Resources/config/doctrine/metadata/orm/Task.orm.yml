@@ -1,0 +1,23 @@
+Task:
+    type: entity
+    table: task
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        task:
+            type: string
+            length: 255
+            fixed: false
+            nullable: false
+        complete:
+            type: boolean
+            nullable: true
+        created:
+            type: datetime
+            nullable: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,22 @@
+Categorie:
+    type: entity
+    table: categorie
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        parentId:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: parent_id
+        title:
+            type: string
+            length: 120
+            fixed: false
+            nullable: true
+    lifecycleCallbacks: {  }

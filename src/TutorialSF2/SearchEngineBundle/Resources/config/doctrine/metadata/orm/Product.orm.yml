@@ -1,0 +1,23 @@
+Product:
+    type: entity
+    table: product
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        name:
+            type: string
+            length: 100
+            fixed: false
+            nullable: false
+        price:
+            type: decimal
+            nullable: false
+        description:
+            type: text
+            nullable: false
+    lifecycleCallbacks: {  }

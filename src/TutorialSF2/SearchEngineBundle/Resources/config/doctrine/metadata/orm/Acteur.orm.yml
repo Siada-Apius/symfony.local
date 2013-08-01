@@ -1,0 +1,42 @@
+Acteur:
+    type: entity
+    table: acteur
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        nom:
+            type: string
+            length: 120
+            fixed: false
+            nullable: true
+        prenom:
+            type: string
+            length: 120
+            fixed: false
+            nullable: true
+        dob:
+            type: date
+            nullable: true
+    manyToMany:
+        film:
+            targetEntity: Film
+            cascade: {  }
+            mappedBy: null
+            inversedBy: acteur
+            joinTable:
+                name: jouer
+                joinColumns:
+                    -
+                        name: acteur_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: film_id
+                        referencedColumnName: id
+            orderBy: null
+    lifecycleCallbacks: {  }

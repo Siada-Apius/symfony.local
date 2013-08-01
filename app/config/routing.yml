@@ -1,0 +1,35 @@
+admin:
+  pattern:   /admin
+  defaults:  { _controller: AcmeAdminBundle:Index:index }
+
+adminUsers:
+    pattern:   /admin/users
+    defaults:  { _controller: AcmeAdminBundle:Index:user }
+
+tutorial_sf2_search_engine:
+    resource: "@TutorialSF2SearchEngineBundle/Resources/config/routing.yml"
+    prefix:   /
+
+logout:
+    pattern:   /logout
+login:
+    pattern:   /login
+    defaults:  { _controller: AcmeRegistrationBundle:Registration:login }
+login_check:
+    pattern:   /login_check
+
+registration:
+        pattern:   /registration
+        defaults:  { _controller: AcmeRegistrationBundle:Registration:registration }
+
+dev_task:
+    resource: "@AcmeTaskBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+acme_index:
+    resource: "@AcmeIndexBundle/Resources/config/routing.php"
+    prefix:   /
+
+
+

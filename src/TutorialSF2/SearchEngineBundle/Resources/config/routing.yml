@@ -1,0 +1,9 @@
+SearchEngineBundle_search:
+    pattern:   /search
+    defaults: { _controller: TutorialSF2SearchEngineBundle:SearchEngine:search }
+ 
+SearchEngineBundle_ajax:
+    pattern: /ajax
+    defaults: { _controller: TutorialSF2SearchEngineBundle:SearchEngine:getAjaxResults}
+    requirements:
+        _method: GET

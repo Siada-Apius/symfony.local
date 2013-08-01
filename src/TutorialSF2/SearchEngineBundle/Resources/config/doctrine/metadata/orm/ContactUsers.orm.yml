@@ -1,0 +1,33 @@
+ContactUsers:
+    type: entity
+    table: contact_users
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        nom:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+        email:
+            type: string
+            length: 100
+            fixed: false
+            nullable: true
+        sujet:
+            type: integer
+            unsigned: false
+            nullable: true
+        message:
+            type: text
+            nullable: true
+        dateCreated:
+            type: datetime
+            nullable: true
+            column: date_created
+    lifecycleCallbacks: {  }
