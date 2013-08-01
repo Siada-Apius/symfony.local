@@ -46,7 +46,7 @@ class SearchController extends Controller
                     ->getRepository('AcmeSearchBundle:Playlist');
 
                 // we get the movies thank to our custom query (cf repository)
-                $films_list = $repository->searchFilm( $title );
+                $films_list = $repository->searchFilm($title );
 
                 // return the results view
                 return $this->render('AcmeSearchBundle:Search:results.html.twig', array(
@@ -73,7 +73,7 @@ class SearchController extends Controller
             $repository = $this->getDoctrine()
                 ->getManager()
                 ->getRepository('AcmeSearchBundle:Playlist');
-            $films_list = $repository->searchFilm( $term );
+            $films_list = $repository->searchFilm($term);
 
             $film_titles = array();
             foreach ($films_list as $film) {

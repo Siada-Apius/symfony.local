@@ -13,11 +13,23 @@ use Doctrine\ORM\EntityRepository;
 
 class FilmRepository extends EntityRepository
 {
-    public function searchFilm( $title ){
-        $qb = $this->createQueryBuilder('f');
-        $qb->where( 'f.title LIKE :title' )
-            ->setParameter( 'title', '%'. $title .'%' );
+    public function searchFilm($category){
 
-        return $qb->getQuery()->getResult();
+        $qb = $this->createQueryBuilder('a');
+        $qb->where( 'a.category LIKE :category' )
+            ->setParameter( 'category', '%'. $category .'%' );
+
+        $result = $qb->getQuery()->getResult();
+        if($result)
+        return $result;
+
+        else {
+         $qb = $this->createQueryBuilder('a');
+         $qb->where( 'a.title LIKE :title' )
+            ->setParameter( 'title', '%'. $category .'%' );
+
+            return $qb->getQuery()->getResult();
+        }
+
     }
 }
