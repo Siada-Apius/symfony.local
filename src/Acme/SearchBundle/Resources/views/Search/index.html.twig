@@ -1,0 +1,13 @@
+{% extends "AcmeSearchBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block tutorial_body %}
+
+    <div id="content">
+
+        {% include "AcmeSearchBundle:Search:form.html.twig" with {'form': form} %}
+
+    </div>
+
+{% endblock %}
