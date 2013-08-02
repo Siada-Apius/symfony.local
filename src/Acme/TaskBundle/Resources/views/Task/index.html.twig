@@ -28,7 +28,9 @@
                 <td>{{ entity.description }}</td>
                 <td>{{ entity.category}}</td>
                 <td><a href="#">{{ entity.owner }}</a></td>
+                {% if user != 'anon.' %}
                 <td>
+
                 <ul>
                     <li>
                         <a href="{{ path('task_show', { 'id': entity.id }) }}">show</a>
@@ -37,16 +39,19 @@
                         <a href="{{ path('task_edit', { 'id': entity.id }) }}">edit</a>
                     </li>
                 </ul>
+
                 </td>
+                {% endif %}
             </tr>
         {% endfor %}
 
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('task_new') }}">Create a new playlist</a>
-        </li>
-    </ul>
+
+            {% if user != 'anon.' %}
+                <a href="{{ path('task_new') }}">Create a new playlist</a>
+            {% endif %}
+
+
 {% endblock %}
