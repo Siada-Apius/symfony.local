@@ -44,7 +44,7 @@ class TaskType extends AbstractType
                     'placeholder' => 'Enter year..',
                 )
             ))
-            ->add('description', 'text', array(
+            ->add('description', 'textarea', array(
                 'label' => 'Description',
                 'required' => true,
                 'attr' => array(

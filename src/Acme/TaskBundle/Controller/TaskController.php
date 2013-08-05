@@ -30,14 +30,12 @@ class TaskController extends Controller
         $user = $this->container->get('security.context')->getToken()->getUsername();
 
 
-
-
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('AcmeTaskBundle:Playlist')->findAll();
 
         return array(
-            'user' =>  $user, 'entities' => $entities,
+            'user' => $user,'entities' => $entities,
         );
     }
 

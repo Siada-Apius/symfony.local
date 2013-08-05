@@ -22,7 +22,7 @@ class RegistrationController extends Controller
         $form = $this->createFormBuilder($task)
             ->add('name', 'text')
             ->add('email', 'text')
-            ->add('pass', 'password')
+            ->add('password', 'password')
             ->add('role', 'choice', array(
                 'choices'   => array('ROLE_USER' => 'User', 'ROLE_ADMIN' => 'Admin'),
                 'required'  => true,
@@ -39,7 +39,7 @@ class RegistrationController extends Controller
 
             $name = $form['name']->getData();
             $email = $form['email']->getData();
-            $pass = sha1($form['pass']->getData());
+            $pass = sha1($form['password']->getData());
             $saveRole = ($form['role']->getData());
 
 

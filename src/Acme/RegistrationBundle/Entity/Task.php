@@ -13,7 +13,7 @@ class Task
 {
     protected $name;
 
-    protected $pass;
+    protected $password;
 
     protected $email;
 
@@ -32,13 +32,13 @@ class Task
     }
 
 
-    public function getPass(){
+    public function getPassword(){
 
-        return $this->pass;
+        return $this->password;
     }
-    public function setPass($pass){
+    public function setPassword($password){
 
-        return $this->pass = $pass;
+        return $this->pass = $password;
     }
 
     public function getEmail()
