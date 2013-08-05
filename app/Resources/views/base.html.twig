@@ -12,23 +12,7 @@
     <link rel="stylesheet" href="{{ asset('bundles/acmetest/bootstrap/css/bootstrap.css') }}" />
     <link rel="stylesheet" href="{{ asset('bundles/acmetest/bootstrap/css/bootstrap-responsive.css') }}" />
 
-
-
-    {% stylesheets
-    '@TutorialSF2SearchEngineBundle/Resources/public/css/*'
-    %}
-    <link rel="stylesheet" href="{{ asset_url }}" />
-    {% endstylesheets %}
-    {% javascripts
-    '@TutorialSF2SearchEngineBundle/Resources/public/js/jquery.js'
-    '@TutorialSF2SearchEngineBundle/Resources/public/js/jquery-ui.js'
-    '@TutorialSF2SearchEngineBundle/Resources/public/js/main.js'
-    %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery.ui.all.css">
-
-
 
     <!-- HTML5 shim, for IE6-8 support of HTML elements -->
     <!-- (if it IE9 -->
@@ -50,18 +34,17 @@
 
         {% block body %}
 
+            {% block nav_menu %}
+            {% endblock %}
+
+            {% block search %}
+            {% endblock %}
+
         {% endblock %}
 
     </div><!-- /container -->
 </div>
 
-<div class="container">
-    <div class="row">
-        <div id="content" class="span12">
-            <!-- our main container -->
-            {% block bodys %}
-            {% endblock %}
-        </div>
-    </div>
 </body>
+
 </html>

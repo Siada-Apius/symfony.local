@@ -2,6 +2,7 @@
     <ul>
         <li><a href="">Index</a></li>
         <li><a href="playlist">All playlist</a></li>
+        <li><a href="search">Search</a></li>
 
         <?php if (!isset($session)): ?>
             <li><a href="registration">Registration</a></li>
@@ -12,7 +13,6 @@
             <li><a href="playlist/new">Create playlist</a></li>
             <li><a href="logout">Logout</a></li>
             <li><a href="admin">Admin</a></li>
-            <li><a href="search">Search</a></li>
         <?php endif; ?>
     </ul>
 </div>
