@@ -1,5 +1,5 @@
 SearchBundle_search:
-    pattern:   /search
+    pattern:   /
     defaults:  { _controller: AcmeSearchBundle:Search:search }
 
 SearchBundle_ajax:

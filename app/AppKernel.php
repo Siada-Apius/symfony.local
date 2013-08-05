@@ -16,15 +16,11 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new Acme\SearchBundle\AcmeSearchBundle(),
 
+            new Acme\SearchBundle\AcmeSearchBundle(),
             new Acme\IndexBundle\AcmeIndexBundle(),
             new Acme\RegistrationBundle\AcmeRegistrationBundle(),
-
-
             new Acme\TaskBundle\AcmeTaskBundle(),
-
-            new TutorialSF2\SearchEngineBundle\TutorialSF2SearchEngineBundle(),
             new Acme\AdminBundle\AcmeAdminBundle(),
         );
 

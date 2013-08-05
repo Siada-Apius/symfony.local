@@ -11,9 +11,6 @@ adminUsers:
     pattern:   /admin/users
     defaults:  { _controller: AcmeAdminBundle:Index:user }
 
-tutorial_sf2_search_engine:
-    resource: "@TutorialSF2SearchEngineBundle/Resources/config/routing.yml"
-    prefix:   /
 
 logout:
     pattern:   /logout

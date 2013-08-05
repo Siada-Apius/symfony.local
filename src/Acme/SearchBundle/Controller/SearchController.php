@@ -23,7 +23,7 @@ class SearchController extends Controller
 
     public function searchAction()
     {
-
+        $user = $this->container->get('security.context')->getToken()->getUsername();
         // Generation of the form
         $form = $this->container->get('form.factory')->createBuilder(new FilmType())->getForm();
 
@@ -46,19 +46,35 @@ class SearchController extends Controller
                     ->getRepository('AcmeSearchBundle:Playlist');
 
                 // we get the movies thank to our custom query (cf repository)
-                $films_list = $repository->searchFilm( $title );
+                $films_list = $repository->searchFilm($title );
 
-                // return the results view
-                return $this->render('AcmeSearchBundle:Search:results.html.twig', array(
-                    'films' => $films_list
-                ));
+                if ($user != 'anon.'){
+                    $a = 1;
+                    return $this->render('AcmeSearchBundle:Search:results.html.twig', array(
+                        'films' => $films_list,
+                        'form' => $form->createView(),
+                        'session' => $a
+                    ));
+                } else {
+                    $a = '';
+                    return $this->render('AcmeSearchBundle:Search:results.html.twig', array(
+                        'films' => $films_list,
+                        'form' => $form->createView(),
+                        'session' => $a
+                    ));
+                }
             }
         }
 
-        // return the form view
-        return $this->render('AcmeSearchBundle:Search:index.html.twig', array(
-            'form' => $form->createView(),
-        ));
+        if ($user != 'anon.'){
+            $a = 1;
+            return $this->render('AcmeSearchBundle:Search:index.html.twig', array('form' => $form->createView(), 'session' => $a));
+        } else {
+            $a = '';
+            return $this->render('AcmeSearchBundle:Search:index.html.twig', array(
+                'form' => $form->createView(), 'session' => $a
+            ));
+        }
     }
 
     public function getAjaxResultsAction()
@@ -73,7 +89,7 @@ class SearchController extends Controller
             $repository = $this->getDoctrine()
                 ->getManager()
                 ->getRepository('AcmeSearchBundle:Playlist');
-            $films_list = $repository->searchFilm( $term );
+            $films_list = $repository->searchFilm($term);
 
             $film_titles = array();
             foreach ($films_list as $film) {
