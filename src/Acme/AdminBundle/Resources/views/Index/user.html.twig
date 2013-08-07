@@ -9,6 +9,8 @@
             <th>Id</th>
             <th>Name</th>
             <th>Email</th>
+            <th>Status</th>
+            <th>Edit</th>
         </tr>
         </thead>
         <tbody>
@@ -17,7 +19,14 @@
                 <td>{{ entity.id }}</td>
                 <td>{{ entity.username }}</td>
                 <td>{{ entity.email }}</td>
+                <td>{{ entity.status }}</td>
+                <td>
+                    <a href="users/edit/{{ entity.id }}/{{ lock }}">Lock user</a><br>
+                    <a href="users/edit/{{ entity.id }}/{{ unlock }}">Unlock user</a><br>
+                    <a href="users/edit/{{ entity.id }}/{{ delete }}">Delete</a>
+                </td>
             </tr>
+
         {% endfor %}
         </tbody>
     </table>

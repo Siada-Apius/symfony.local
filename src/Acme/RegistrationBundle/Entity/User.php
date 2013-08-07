@@ -50,6 +50,13 @@ class User implements UserInterface
      */
     protected $roles;
 
+
+    /**
+     * @ORM\Column(type="string", length=25, unique=false)
+     */
+    protected $status;
+
+
     /**
      * Constructor
      */
@@ -195,5 +202,29 @@ class User implements UserInterface
     public function getEmail()
     {
         return $this->email;
+    }
+
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return User
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }

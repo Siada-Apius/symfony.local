@@ -3,14 +3,9 @@ acme_search:
     prefix:   /
 
 
-admin:
-  pattern:   /admin
-  defaults:  { _controller: AcmeAdminBundle:Index:index }
-
-adminUsers:
-    pattern:   /admin/users
-    defaults:  { _controller: AcmeAdminBundle:Index:user }
-
+acme_admin:
+    resource: "@AcmeAdminBundle/Resources/config/routing.php"
+    prefix:   /
 
 logout:
     pattern:   /logout

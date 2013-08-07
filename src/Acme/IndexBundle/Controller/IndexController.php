@@ -19,6 +19,8 @@ class IndexController extends Controller
 
         if ($user != 'anon.'){
             $a = 1;
+
+
             return $this->render('AcmeIndexBundle:Index:index.html.php', array('name' => $user, 'session' => $a));
         }
 
