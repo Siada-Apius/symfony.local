@@ -1,0 +1,49 @@
+Users:
+    type: entity
+    table: users
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        username:
+            type: string
+            length: 25
+            fixed: false
+            nullable: false
+        password:
+            type: string
+            length: 40
+            fixed: false
+            nullable: false
+        salt:
+            type: string
+            length: 32
+            fixed: false
+            nullable: false
+        email:
+            type: string
+            length: 60
+            fixed: false
+            nullable: false
+    manyToMany:
+        role:
+            targetEntity: Roles
+            cascade: {  }
+            mappedBy: null
+            inversedBy: user
+            joinTable:
+                name: user_role
+                joinColumns:
+                    -
+                        name: user_id
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: role_id
+                        referencedColumnName: id
+            orderBy: null
+    lifecycleCallbacks: {  }

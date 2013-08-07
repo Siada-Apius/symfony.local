@@ -59,7 +59,17 @@ class Playlist
     /**
      * @var string
      *
-     * @ORM\Column(name="category", type="string", length=255, nullable=false)
+     * @ORM\Column(name="owner", type="string", length=255, nullable=false)
+     */
+    private $owner;
+
+    /**
+     * @var \Category
+     *
+     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="category", referencedColumnName="id")
+     * })
      */
     private $category;
 
@@ -191,12 +201,35 @@ class Playlist
     }
 
     /**
-     * Set category
+     * Set owner
      *
-     * @param string $category
+     * @param string $owner
      * @return Playlist
      */
-    public function setCategory($category)
+    public function setOwner($owner)
+    {
+        $this->owner = $owner;
+    
+        return $this;
+    }
+
+    /**
+     * Get owner
+     *
+     * @return string 
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \Acme\SearchBundle\Entity\Category $category
+     * @return Playlist
+     */
+    public function setCategory(\Acme\SearchBundle\Entity\Category $category = null)
     {
         $this->category = $category;
     
@@ -206,7 +239,7 @@ class Playlist
     /**
      * Get category
      *
-     * @return string 
+     * @return \Acme\SearchBundle\Entity\Category 
      */
     public function getCategory()
     {

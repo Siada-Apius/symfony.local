@@ -1,3 +1,11 @@
+SearchBundle_category_result:
+    pattern:   /category/{param}
+    defaults:  { _controller: AcmeSearchBundle:Category:result }
+
+SearchBundle_category:
+    pattern:   /category/
+    defaults:  { _controller: AcmeSearchBundle:Category:index }
+
 SearchBundle_search:
     pattern:   /
     defaults:  { _controller: AcmeSearchBundle:Search:search }
