@@ -23,7 +23,19 @@ class SearchController extends Controller
 
     public function searchAction()
     {
+
+
+        $em = $this->getDoctrine()->getManager();
         $user = $this->container->get('security.context')->getToken()->getUsername();
+
+        $query = $em->createQuery("SELECT u.status FROM Acme\RegistrationBundle\Entity\User u WHERE u.username = '".$user."'");
+        $userStatusArray = $query->getResult();
+
+
+        if($user != 'anon.' AND $userStatusArray['0']['status'] == 'lock'){
+            throw $this->createNotFoundException('Your account is blocked.');
+        }else{
+
         // Generation of the form
         $form = $this->container->get('form.factory')->createBuilder(new FilmType())->getForm();
 
@@ -74,6 +86,9 @@ class SearchController extends Controller
             return $this->render('AcmeSearchBundle:Search:index.html.twig', array(
                 'form' => $form->createView(), 'session' => $a
             ));
+        }
+
+
         }
     }
 

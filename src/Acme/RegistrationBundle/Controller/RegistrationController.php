@@ -37,25 +37,19 @@ class RegistrationController extends Controller
 
         if ($form->isValid()) {
 
-            $name = $form['name']->getData();
-            $email = $form['email']->getData();
-            $pass = sha1($form['password']->getData());
-            $saveRole = ($form['role']->getData());
+        define('STATUS_UNLOCK','unlock');
 
-
-
-
-
-################################################
+        #save in database
 
         $user = new User();
-        $user->setUsername($name);
-        $user->setPassword($pass);
-        $user->setEmail($email);
+        $user->setUsername($form['name']->getData());
+        $user->setPassword(sha1($form['password']->getData()));
+        $user->setEmail($form['email']->getData());
+        $user->setStatus(STATUS_UNLOCK);
 
 
         $role = new Role();
-        $role->setName($saveRole);
+        $role->setName($form['role']->getData());
         $user->addRole($role);
 
         $em = $this->getDoctrine()->getManager();
@@ -76,9 +70,16 @@ class RegistrationController extends Controller
 
     public function loginAction()
     {
+
         $request = $this->getRequest();
         $session = $request->getSession();
 
+
+
+
+        #if(){
+
+        #}else{
         // получить ошибки логина, если таковые имеются
         if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
             $error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
@@ -95,7 +96,7 @@ class RegistrationController extends Controller
             )
         );
     }
-
+    #}
 
     /*public function LogoutAction()
     {
