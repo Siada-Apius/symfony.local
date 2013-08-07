@@ -26,8 +26,6 @@ class IndexController extends Controller
             return $this->render('AcmeAdminBundle:Index:index.html.php', array());
         }
 
-
-
     }
 
     public function userAction(){
@@ -60,8 +58,8 @@ class IndexController extends Controller
 
         }else{
 
-        $query = $em->createQuery("UPDATE Acme\RegistrationBundle\Entity\User a SET a.status='".$status ."' WHERE a.id = '".$userId."'");
-        $users = $query->getResult();
+            $query = $em->createQuery("UPDATE Acme\RegistrationBundle\Entity\User a SET a.status='".$status ."' WHERE a.id = '".$userId."'");
+            $users = $query->getResult();
         }
 
         return $this->redirect($this->generateUrl('adminUsers'));
