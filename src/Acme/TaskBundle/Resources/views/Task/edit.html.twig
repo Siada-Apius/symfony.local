@@ -13,10 +13,11 @@
 
         <ul class="record_actions nav-list">
     <li>
-        <a href="{{ path('task') }}">
+        <a href="/playlist/page/1">
             Back to the Playlist
         </a>
     </li>
+
     <li>
         <form action="{{ path('task_delete', { 'id': entity.id }) }}" method="post">
             <input type="hidden" name="_method" value="DELETE" />

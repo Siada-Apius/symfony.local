@@ -18,40 +18,54 @@
             </tr>
         </thead>
         <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('task_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.title }}</td>
-                <td>{{ entity.author }}</td>
-                <td>{{ entity.album }}</td>
-                <td>{{ entity.year }}</td>
-                <td>{{ entity.description }}</td>
-                <td>{{ entity.category}}</td>
-                <td><a href="#">{{ entity.owner }}</a></td>
-                {% if user != 'anon.' %}
-                <td>
+        {% if records is defined  %}
+            {% for rec in records %}
 
-                <ul>
-                    <li>
-                        <a href="{{ path('task_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('task_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
+                <tr>
+                    <td><a href="{{ path('task_show', { 'id': rec.id }) }}">{{ rec.id }}</a></td>
+                    <td>{{ rec.title }}</td>
+                    <td>{{ rec.author }}</td>
+                    <td>{{ rec.album }}</td>
+                    <td>{{ rec.year }}</td>
+                    <td>{{ rec.description }}</td>
+                    <td>{{ rec.category}}</td>
+                    <td><a href="#">{{ rec.owner }}</a></td>
+                    {% if user != 'anon.' %}
+                    <td>
 
-                </td>
-                {% endif %}
-            </tr>
-        {% endfor %}
+                    <ul>
+                        <li>
+                            <a href="{{ path('task_show', { 'id': rec.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('task_edit', { 'id': rec.id }) }}">edit</a>
+                        </li>
+                    </ul>
 
+                    </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        {% endif %}
         </tbody>
     </table>
 
-
+        {% if user is defined  %}
             {% if user != 'anon.' %}
                 <a href="{{ path('task_new') }}">Create a new playlist</a>
             {% endif %}
+        {% endif %}
+        <br>
+
+
+               {# <p>{{ paginator }}</p>#}
+    {% if pageNum is defined  %}
+    <div style="padding-left:50%">
+                {% for v in pageNum %}
+                    <a href="{{ v }}">{{ v }}</a>
+                {% endfor %}
+    </div>
+    {% endif %}
 
 
 {% endblock %}

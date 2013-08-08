@@ -3,6 +3,7 @@
 namespace Acme\TaskBundle\Controller;
 
 use Acme\TaskBundle\Entity\Playlist;
+use Acme\TaskBundle\Helpers\Paginator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -21,11 +22,11 @@ class TaskController extends Controller
     /**
      * Lists all Task entities.
      *
-     * @Route("/", name="task")
+     * @Route("/page/{num}", name="task")
      * @Method("GET")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction($num)
     {
         $user = $this->container->get('security.context')->getToken()->getUsername();
 
@@ -33,9 +34,46 @@ class TaskController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('AcmeTaskBundle:Playlist')->findAll();
+####################################################################################################
 
+        // считаем количество записей
+        $records_count = $em->createQuery(
+
+            "SELECT COUNT(p) FROM Acme\TaskBundle\Entity\Playlist p"
+        )
+            ->getSingleResult();
+
+        $records_count = $records_count[1]; //весь массив нам не нужен, а нужно именно количество
+
+
+// выбираем сами записи
+        $query = $em->createQuery(
+            "SELECT p FROM Acme\TaskBundle\Entity\Playlist p"
+        );
+        $paginator = new Paginator( //подключаем хелпер
+            $query, //запрос
+            $records_count, //количество записей
+            "/news/pages", //шаблон для генерации ссылок
+            $num, //id странички, наш параметр {page}
+            5,
+            3
+        );
+        $records = $paginator->getItems(); //выдёргиваем результат
+
+        $arr = array();
+        for($i = 1;$i <=  ($records_count/3);$i++){
+
+            array_push($arr,$i);
+        }
+
+
+
+
+
+
+####################################################################################################
         return array(
-            'user' => $user,'entities' => $entities,
+            'user' => $user,'entities' => $entities,'records'=> $records, 'paginator'=>$paginator, 'pageNum'=>$arr,
         );
     }
 
@@ -99,6 +137,7 @@ class TaskController extends Controller
      */
     public function showAction($id)
     {
+        $user = $this->container->get('security.context')->getToken()->getUsername();
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('AcmeTaskBundle:Playlist')->find($id);
@@ -112,6 +151,7 @@ class TaskController extends Controller
         return array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
+            'user'=> $user,
         );
     }
 
@@ -199,7 +239,7 @@ class TaskController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('task'));
+        return $this->redirect($this->generateUrl("SearchBundle_search"));
 
  /*       return $this->render(
             "AcmeTaskBundle:Task:test.html.twig",
