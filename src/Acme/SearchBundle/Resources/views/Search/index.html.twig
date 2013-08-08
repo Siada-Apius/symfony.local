@@ -1,24 +1,5 @@
 {% extends "AcmeSearchBundle::layout.html.twig" %}
 
-    <div class="span3">
-        <ul>
-            <li><a href="playlist/page/1">All playlist</a></li>
-
-            {% if session is empty %}
-                <li><a href="registration">Registration</a></li>
-                <li><a href="login">Login</a></li>
-            {% endif %}
-
-            {% if session == true %}
-                <li><a href="playlist/new">Create playlist</a></li>
-                <li><a href="logout">Logout</a></li>
-
-            {% endif %}
-        </ul>
-    </div>
-
-{% endblock %}
-
 {% block tutorial_body %}
     <div class="span5">
         {% include "AcmeSearchBundle:Search:form.html.twig" with {'form': form} %}
