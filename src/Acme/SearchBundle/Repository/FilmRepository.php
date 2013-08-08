@@ -16,20 +16,10 @@ class FilmRepository extends EntityRepository
     public function searchFilm($category){
 
         $qb = $this->createQueryBuilder('a');
-        $qb->where( 'a.category LIKE :category' )
-            ->setParameter( 'category', '%'. $category .'%' );
-
-        $result = $qb->getQuery()->getResult();
-        if($result)
-        return $result;
-
-        else {
-         $qb = $this->createQueryBuilder('a');
-         $qb->where( 'a.title LIKE :title' )
+        $qb->where( 'a.title LIKE :title' )
             ->setParameter( 'title', '%'. $category .'%' );
 
-            return $qb->getQuery()->getResult();
-        }
+        return $qb->getQuery()->getResult();
 
     }
 }

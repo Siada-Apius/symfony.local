@@ -23,44 +23,77 @@ class SearchController extends Controller
 
     public function searchAction()
     {
-
-
-        $em = $this->getDoctrine()->getManager();
         $user = $this->container->get('security.context')->getToken()->getUsername();
-
-        $query = $em->createQuery("SELECT u.status FROM Acme\RegistrationBundle\Entity\User u WHERE u.username = '".$user."'");
-        $userStatusArray = $query->getResult();
-
-
-        if($user != 'anon.' AND $userStatusArray['0']['status'] == 'lock'){
-            throw $this->createNotFoundException('Your account is blocked.');
-        }else{
-
-        // Generation of the form
         $form = $this->container->get('form.factory')->createBuilder(new FilmType())->getForm();
-
-        // We recover the user request
         $request = $this->container->get('request');
 
         if ($request->getMethod() == 'POST') {
 
             $formHandler = new FilmHandler($form, $request, $this->getDoctrine()->getManager());
 
-            // this variable contains a boolean which indicate if there are errors or not
             if($formHandler->process()){
 
-                // title sent
                 $title = $form['title']->getData();
 
-                // On récupère le repository
                 $repository = $this->getDoctrine()
                     ->getManager()
                     ->getRepository('AcmeSearchBundle:Playlist');
 
-                // we get the movies thank to our custom query (cf repository)
                 $films_list = $repository->searchFilm($title );
 
+                if(empty($films_list)){
+                    $repository = $this->getDoctrine()
+                        ->getManager()
+                        ->getRepository('AcmeSearchBundle:Category');
+
+                    $films_list = $repository->searchFilm($title );
+
+                    foreach ($films_list as $val){
+
+
+                        $em = $this->getDoctrine()->getManager();
+                        $query = $em->createQuery(
+                            'SELECT p
+                            FROM AcmeSearchBundle:Playlist p
+                            WHERE p.category = :category'
+                        )->setParameter('category', $val->getId());
+
+                        $products = $query->getResult();
+
+
+                        $title = array();
+
+                        foreach ($products as $asd){
+
+                            $title[$asd->getId()] = $asd->getTitle();
+
+                        }
+
+                        $array = array('title' => $title);
+
+                    }
+
+                    if ($user != 'anon.'){
+
+                        $a = 1;
+                        return $this->render('AcmeSearchBundle:Search:results.html.twig', array(
+                            'array' => $array,
+                            'form' => $form->createView(),
+                            'session' => $a
+                        ));
+                    } else {
+
+                        $a = '';
+                        return $this->render('AcmeSearchBundle:Search:results.html.twig', array(
+                            'array' => $array,
+                            'form' => $form->createView(),
+                            'session' => $a
+                        ));
+                    }
+                }
+
                 if ($user != 'anon.'){
+
                     $a = 1;
                     return $this->render('AcmeSearchBundle:Search:results.html.twig', array(
                         'films' => $films_list,
@@ -68,6 +101,7 @@ class SearchController extends Controller
                         'session' => $a
                     ));
                 } else {
+
                     $a = '';
                     return $this->render('AcmeSearchBundle:Search:results.html.twig', array(
                         'films' => $films_list,
@@ -76,20 +110,25 @@ class SearchController extends Controller
                     ));
                 }
             }
-        }
 
-        if ($user != 'anon.'){
-            $a = 1;
-            return $this->render('AcmeSearchBundle:Search:index.html.twig', array('form' => $form->createView(), 'session' => $a));
         } else {
-            $a = '';
-            return $this->render('AcmeSearchBundle:Search:index.html.twig', array(
-                'form' => $form->createView(), 'session' => $a
-            ));
+
+            if ($user != 'anon.'){
+
+                $a = 1;
+                return $this->render('AcmeSearchBundle:Search:index.html.twig', array('form' => $form->createView(), 'session' => $a));
+
+            } else {
+
+                $a = '';
+                return $this->render('AcmeSearchBundle:Search:index.html.twig', array(
+                    'form' => $form->createView(), 'session' => $a
+                ));
+
+            }
+
         }
 
-
-        }
     }
 
     public function getAjaxResultsAction()
@@ -98,15 +137,16 @@ class SearchController extends Controller
 
         if($request->isXmlHttpRequest())
         {
-            // get title sent ($_GET)
             $term = $request->query->get('term');
 
             $repository = $this->getDoctrine()
                 ->getManager()
                 ->getRepository('AcmeSearchBundle:Playlist');
+
             $films_list = $repository->searchFilm($term);
 
             $film_titles = array();
+
             foreach ($films_list as $film) {
                 $film_titles[] = $film->getTitle();
             }

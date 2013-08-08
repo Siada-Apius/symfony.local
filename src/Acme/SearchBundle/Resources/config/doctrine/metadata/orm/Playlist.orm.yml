@@ -34,9 +34,19 @@ Playlist:
             length: 255
             fixed: false
             nullable: false
-        category:
+        owner:
             type: string
             length: 255
             fixed: false
             nullable: false
+    manyToOne:
+        category:
+            targetEntity: Category
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                category:
+                    referencedColumnName: id
+            orphanRemoval: false
     lifecycleCallbacks: {  }

@@ -1,5 +1,4 @@
 {% extends "AcmeSearchBundle::layout.html.twig" %}
-{% block nav_menu %}
 
     <div class="span3">
         <ul>
@@ -19,6 +18,7 @@
     </div>
 
 {% endblock %}
+
 {% block tutorial_body %}
     <div class="span5">
         {% include "AcmeSearchBundle:Search:form.html.twig" with {'form': form} %}

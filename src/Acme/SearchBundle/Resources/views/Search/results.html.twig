@@ -1,35 +1,33 @@
 {% extends "AcmeSearchBundle::layout.html.twig" %}
-{% block nav_menu %}
-    <div class="span3">
-        <ul>
-            <li><a href="playlist">All playlist</a></li>
 
-            {% if session is empty %}
-                <li><a href="registration">Registration</a></li>
-                <li><a href="login">Login</a></li>
-            {% endif %}
-
-            {% if session == true %}
-                <li><a href="playlist/new">Create playlist</a></li>
-                <li><a href="logout">Logout</a></li>
-
-            {% endif %}
-        </ul>
-    </div>
-{% endblock %}
 {% block tutorial_body %}
     <div class="span5">
         <div id="content">
             {% include "AcmeSearchBundle:Search:form.html.twig" with {'form': form} %}
             <hr />
             <ul>
-                {% for film in films %}
-                    <li>
-                        <a href="playlist/{{ film.id }}">{{ film.title }}</a> <br />
-                    </li>
+                {% if films is defined %}
+
+                    {% for film in films %}
+
+                        <li><a href="playlist/{{ film.id }}">{{ film.title }}</a></li>
                 {% else %}
+
                     <div class="alert">Sorry ^^'</div>
                 {% endfor %}
+
+                {% endif %}
+
+                {% if array.title is defined %}
+
+                    {% for key, value in array.title %}
+
+                        <li><a href="playlist/{{ key }}">{{ value }}</a></li>
+
+                    {% endfor %}
+
+                {% endif %}
+
             </ul>
         </div>
     </div>
