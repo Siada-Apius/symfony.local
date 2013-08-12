@@ -120,7 +120,7 @@ class SearchController extends Controller
 
                 $menu = array(
                               'All songs'=>'/playlist/page/1',
-                              'Category'=>'/category/',
+                              'Category'=>'/category/page/1',
                               'Create playlist'=>'/playlist/new',
                               'Logout'=>'logout'
                                 );

@@ -34,29 +34,6 @@
 
         {% block body %}
 
-<<<<<<< HEAD
-            {% block nav_menu %}
-
-                <div class="span3">
-                    <ul>
-                        <li><a href="/playlist/page/1">All playlist</a></li>
-                        <li><a href="/category/page/1">Category</a></li>
-
-                        {% if session is empty %}
-                            <li><a href="{{ path ('registration') }}">Registration</a></li>
-                            <li><a href="{{ path ('login') }}">Login</a></li>
-                        {% endif %}
-
-                        {% if session == true %}
-                            <li><a href="{{ path ('task_new') }}">Create playlist</a></li>
-                            <li><a href="{{ path ('logout') }}">Logout</a></li>
-                        {% endif %}
-
-                    </ul>
-                </div>
-
-            {% endblock %}
-
             {% block search %}
             {% endblock %}
 
