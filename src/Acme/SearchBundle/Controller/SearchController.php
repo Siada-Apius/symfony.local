@@ -18,6 +18,7 @@ use Acme\SearchBundle\Entity\Playlist;
 use Acme\SearchBundle\Form\FilmType;
 use Acme\SearchBundle\Form\FilmHandler;
 
+
 class SearchController extends Controller
 {
 
@@ -116,13 +117,28 @@ class SearchController extends Controller
             if ($user != 'anon.'){
 
                 $a = 1;
-                return $this->render('AcmeSearchBundle:Search:index.html.twig', array('form' => $form->createView(), 'session' => $a));
+
+                $menu = array(
+                              'All songs'=>'/playlist/page/1',
+                              'Category'=>'/category/',
+                              'Create playlist'=>'/playlist/new',
+                              'Logout'=>'logout'
+                                );
+
+                return $this->render('AcmeSearchBundle:Search:index.html.twig', array('form' => $form->createView(), 'session' => $a, 'menu' => $menu));
 
             } else {
 
                 $a = '';
+
+                $menu = array(
+                    'All songs'=>'/playlist/page/1',
+                    'Registration'=>'registration',
+                    'Login'=>'login',
+                );
+
                 return $this->render('AcmeSearchBundle:Search:index.html.twig', array(
-                    'form' => $form->createView(), 'session' => $a
+                    'form' => $form->createView(), 'session' => $a,'menu'=>$menu
                 ));
 
             }
