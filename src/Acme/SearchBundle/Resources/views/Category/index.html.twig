@@ -6,9 +6,19 @@
 
     <div class="span5">
         <ul>
-            {% for entity in entities %}
-                <li><a href="{{ entity.id }}">{{ entity.title }}</a></li>
+            {% for rec in records %}
+                <li><a href="/category/{{ rec.id }}">{{ rec.title }}</a></li>
             {% endfor %}
         </ul>
+
+        {% if pageNum is defined  %}
+            <div style="padding-left:50%">
+                {% for v in pageNum %}
+                    <a href="{{ v }}">{{ v }}</a>
+                {% endfor %}
+            </div>
+        {% endif %}
+
     </div>
+
 {% endblock %}
