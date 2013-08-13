@@ -1,7 +1,3 @@
-SearchBundle_category_result:
-    pattern:   /category/{param}
-    defaults:  { _controller: AcmeSearchBundle:Category:result }
-
 SearchBundle_genres:
     pattern:   /category/page/{num}
     defaults:  { _controller: AcmeSearchBundle:Category:index }

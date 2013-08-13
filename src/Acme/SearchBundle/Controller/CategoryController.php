@@ -101,27 +101,4 @@ class CategoryController extends Controller
 
     }
 
-    public function resultAction($param){
-
-        $em = $this->getDoctrine()->getManager();
-        $entities = $em->getRepository('AcmeSearchBundle:Playlist')->findByCategory($param);
-
-
-        $user = $this->container->get('security.context')->getToken()->getUsername();
-        if ($user != 'anon.'){
-            $a = 1;
-            return $this->render('AcmeSearchBundle:Category:result.html.twig', array(
-                'res' => $entities,
-                'session' => $a
-            ));
-        } else {
-            $a = '';
-            return $this->render('AcmeSearchBundle:Category:result.html.twig', array(
-                'res' => $entities,
-                'session' => $a
-            ));
-        }
-
-    }
-
 }

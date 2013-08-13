@@ -4,15 +4,15 @@
 
     <h1>Welcome to the Category:index page</h1>
 
-    <div class="span5">
+    <div class="span11">
         <ul>
             {% for rec in records %}
-                <li><a href="/category/{{ rec.id }}">{{ rec.title }}</a></li>
+                <li>{{ rec.title }}</li>
             {% endfor %}
         </ul>
 
         {% if pageNum is defined  %}
-            <div style="padding-left:50%">
+            <div class="span4">
                 {% for v in pageNum %}
                     <a href="{{ v }}">{{ v }}</a>
                 {% endfor %}
