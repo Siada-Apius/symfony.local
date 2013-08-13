@@ -29,24 +29,37 @@ class Genres
     private $gtitle;
 
 
+
     /**
      * Get gid
      *
-     * @return integer
+     * @return integer 
      */
-    public function getId()
+    public function getGid()
     {
         return $this->gid;
     }
 
     /**
-     * Get title
+     * Set gtitle
      *
-     * @return string
+     * @param string $gtitle
+     * @return Genres
      */
-    public function getTitle()
+    public function setGtitle($gtitle)
+    {
+        $this->gtitle = $gtitle;
+    
+        return $this;
+    }
+
+    /**
+     * Get gtitle
+     *
+     * @return string 
+     */
+    public function getGtitle()
     {
         return $this->gtitle;
     }
-
 }

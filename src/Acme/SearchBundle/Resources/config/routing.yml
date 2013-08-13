@@ -1,3 +1,7 @@
+SearchBundle_artists:
+    pattern: /artists/page/{num}
+    defaults: { _controller: AcmeSearchBundle:Artists:index }
+
 SearchBundle_genres:
     pattern:   /category/page/{num}
     defaults:  { _controller: AcmeSearchBundle:Category:index }

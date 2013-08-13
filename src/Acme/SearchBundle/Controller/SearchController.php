@@ -119,10 +119,11 @@ class SearchController extends Controller
                 $a = 1;
 
                 $menu = array(
-                              'All songs'=>'/playlist/page/1',
-                              'Category'=>'/category/page/1',
-                              'Create playlist'=>'/playlist/new',
-                              'Logout'=>'logout'
+                                'All songs'=>'/playlist/page/1',
+                                'All Category'=>'/category/page/1',
+                                'All Artist'=>'/artists/page/1',
+                                'Create playlist'=>'/playlist/new',
+                                'Logout'=>'logout'
                                 );
 
                 return $this->render('AcmeSearchBundle:Search:index.html.twig', array('form' => $form->createView(), 'session' => $a, 'menu' => $menu));

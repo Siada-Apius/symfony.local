@@ -1,0 +1,24 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AcmeSearchBundle:Artists:index{% endblock %}
+
+{% block body %}
+<h1>Welcome to the Artists:index page</h1>
+    <div class="span11">
+        <ul>
+            {% for rec in records %}
+                <li>{{ rec.aname }}</li>
+            {% endfor %}
+        </ul>
+
+        {% if pageNum is defined  %}
+            <div class="span4">
+                {% for v in pageNum %}
+                    <a href="{{ v }}">{{ v }}</a>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+    </div>
+
+{% endblock %}
