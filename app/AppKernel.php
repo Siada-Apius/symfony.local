@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Acme\RegistrationBundle\AcmeRegistrationBundle(),
             new Acme\TaskBundle\AcmeTaskBundle(),
             new Acme\AdminBundle\AcmeAdminBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

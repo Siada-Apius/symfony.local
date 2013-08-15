@@ -4,21 +4,29 @@
 
     <h1>Welcome to the Category:index page</h1>
 
-    <div class="span11">
-        <ul>
-            {% for rec in records %}
-                <li>{{ rec.title }}</li>
-            {% endfor %}
-        </ul>
+    <table class="table table-bordered">
+        <tr>
+            {# sorting of properties based on query components #}
+            <th>{{ knp_pagination_sortable(pagination, 'Id', 'a.gid') }}</th>
+            <th{% if pagination.isSorted('a.Title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title', 'a.gtitle') }}</th>
+        </tr>
 
-        {% if pageNum is defined  %}
-            <div class="span4">
-                {% for v in pageNum %}
-                    <a href="{{ v }}">{{ v }}</a>
-                {% endfor %}
-            </div>
-        {% endif %}
+        {# table body #}
+        {% for article in pagination %}
+            <tr {% if loop.index is odd %}class="color"{% endif %}>
+                <td>{{ article.gid }}</td>
+                <td>{{ article.gtitle }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    {# display navigation #}
+    <div class="pagination-centered">
 
+        <div class="alert-info">
+            <p>All pages: {{ pagination.getTotalItemCount }}</p>
+        </div>
+
+        {{ knp_pagination_render(pagination) }}
     </div>
 
 {% endblock %}
