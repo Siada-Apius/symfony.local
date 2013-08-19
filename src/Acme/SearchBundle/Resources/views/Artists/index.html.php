@@ -9,19 +9,17 @@
     <table class="table table-bordered">
         <tr>
             {# sorting of properties based on query components #}
+            <th>{{ knp_pagination_sortable(pagination, 'Id', 'a.aid') }}</th>
             <th{% if pagination.isSorted('a.Title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title', 'a.atitle') }}</th>
         </tr>
 
         {# table body #}
-        <tr>
-            <th>
-                {% for k,v in pagination %}
-                    {% for title in v %}
-                        <li> {{  title }}</li>
-                    {% endfor %}
-                {% endfor %}
-            <th>
-        </tr>
+        {% for article in pagination %}
+            <tr {% if loop.index is odd %}class="color"{% endif %}>
+                {{ article }}
+
+            </tr>
+        {% endfor %}
     </table>
     {# display navigation #}
     <div class="pagination-centered">

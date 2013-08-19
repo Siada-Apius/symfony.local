@@ -9,8 +9,9 @@ class TracksController extends Controller
     public function indexAction()
     {
         $em    = $this->get('doctrine.orm.entity_manager');
-        $dql   = "SELECT a FROM AcmeSearchBundle:Tracks a";
-        $query = $em->createQuery($dql);
+        $dql = $em->createQuery("SELECT a.ttitle FROM AcmeSearchBundle:Tracks a WHERE a.artistsAid < (100)");
+        $query = $dql->getArrayResult();
+
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -20,7 +21,7 @@ class TracksController extends Controller
         );
 
         // parameters to template
-        return $this->render('AcmeSearchBundle:Artists:index.html.twig', array('pagination' => $pagination));
+        return $this->render('AcmeSearchBundle:Tracks:index.html.twig', array('pagination' => $pagination));
     }
 
 }
