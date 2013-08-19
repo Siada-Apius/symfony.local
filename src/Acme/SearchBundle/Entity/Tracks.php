@@ -12,14 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Tracks
 {
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="discs_did", type="bigint", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     */
-    private $discsDid;
 
     /**
      * @var integer
@@ -62,14 +54,14 @@ class Tracks
     public function setDiscsDid($discsDid)
     {
         $this->discsDid = $discsDid;
-    
+
         return $this;
     }
 
     /**
      * Get discsDid
      *
-     * @return integer 
+     * @return integer
      */
     public function getDiscsDid()
     {
@@ -85,14 +77,14 @@ class Tracks
     public function setTnumber($tnumber)
     {
         $this->tnumber = $tnumber;
-    
+
         return $this;
     }
 
     /**
      * Get tnumber
      *
-     * @return integer 
+     * @return integer
      */
     public function getTnumber()
     {
@@ -108,14 +100,14 @@ class Tracks
     public function setArtistsAid($artistsAid)
     {
         $this->artistsAid = $artistsAid;
-    
+
         return $this;
     }
 
     /**
      * Get artistsAid
      *
-     * @return integer 
+     * @return integer
      */
     public function getArtistsAid()
     {
@@ -131,14 +123,14 @@ class Tracks
     public function setTtitle($ttitle)
     {
         $this->ttitle = $ttitle;
-    
+
         return $this;
     }
 
     /**
      * Get ttitle
      *
-     * @return string 
+     * @return string
      */
     public function getTtitle()
     {
@@ -154,14 +146,14 @@ class Tracks
     public function setTseconds($tseconds)
     {
         $this->tseconds = $tseconds;
-    
+
         return $this;
     }
 
     /**
      * Get tseconds
      *
-     * @return integer 
+     * @return integer
      */
     public function getTseconds()
     {
