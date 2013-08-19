@@ -50,6 +50,13 @@ class Users
     private $email;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=25, nullable=false)
+     */
+    private $status;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Roles", inversedBy="user")
@@ -173,6 +180,29 @@ class Users
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return Users
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string 
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 
     /**

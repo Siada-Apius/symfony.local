@@ -1,21 +1,23 @@
-{% extends "AcmeSearchBundle::layout.html.twig" %}
+{% extends "::base.html.twig" %}
 
-{% block tutorial_body %}
+{% block title %}AcmeSearchBundle:Tracks:index{% endblock %}
 
-    <h1>Welcome to the Category:index page</h1>
+{% block body %}
+
+    <h1>Welcome to the Tracks:index page</h1>
 
     <table class="table table-bordered">
         <tr>
             {# sorting of properties based on query components #}
-            <th>{{ knp_pagination_sortable(pagination, 'Id', 'a.gid') }}</th>
-            <th{% if pagination.isSorted('a.Title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title', 'a.gtitle') }}</th>
+            <th>{{ knp_pagination_sortable(pagination, 'Disc Id', 'a.discs_did') }}</th>
+            <th{% if pagination.isSorted('a.Title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title', 'a.ttitle') }}</th>
         </tr>
 
         {# table body #}
         {% for article in pagination %}
             <tr {% if loop.index is odd %}class="color"{% endif %}>
-                <td>{{ article.gid }}</td>
-                <td>{{ article.gtitle }}</td>
+                <td>{{ article.discs_did }}</td>
+                <td>{{ article.ttitle }}</td>
             </tr>
         {% endfor %}
     </table>
@@ -28,5 +30,4 @@
 
         {{ knp_pagination_render(pagination) }}
     </div>
-
 {% endblock %}

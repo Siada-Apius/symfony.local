@@ -2,22 +2,23 @@ acme_search:
     resource: "@AcmeSearchBundle/Resources/config/routing.yml"
     prefix:   /
 
-
 acme_admin:
     resource: "@AcmeAdminBundle/Resources/config/routing.php"
     prefix:   /
 
 logout:
     pattern:   /logout
+
 login:
     pattern:   /login
     defaults:  { _controller: AcmeRegistrationBundle:Registration:login }
+
 login_check:
     pattern:   /login_check
 
 registration:
-        pattern:   /registration
-        defaults:  { _controller: AcmeRegistrationBundle:Registration:registration }
+    pattern:   /registration
+    defaults:  { _controller: AcmeRegistrationBundle:Registration:registration }
 
 dev_task:
     resource: "@AcmeTaskBundle/Controller/"

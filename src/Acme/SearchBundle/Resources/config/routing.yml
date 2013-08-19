@@ -1,6 +1,10 @@
-SearchBundle_category_result:
-    pattern:   /category/{param}
-    defaults:  { _controller: AcmeSearchBundle:Category:result }
+SearchBundle_tracks:
+    pattern: /tracks/
+    defaults: { _controller: AcmeSearchBundle:Tracks:index }
+
+SearchBundle_artists:
+    pattern: /artists/
+    defaults: { _controller: AcmeSearchBundle:Artists:index }
 
 SearchBundle_category:
     pattern:   /category/

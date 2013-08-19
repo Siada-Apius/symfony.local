@@ -119,11 +119,14 @@ class SearchController extends Controller
                 $a = 1;
 
                 $menu = array(
-                              'All songs'=>'/playlist/page/1',
-                              'Category'=>'/category/',
-                              'Create playlist'=>'/playlist/new',
-                              'Logout'=>'logout'
-                                );
+
+                    'All songs' =>'',
+                    'All Category' => $this->generateUrl('SearchBundle_category'),
+                    'All Artist' => $this->generateUrl('SearchBundle_artists'),
+                    'Create playlist' => $this->generateUrl('task_new'),
+                    'Logout' => $this->generateUrl('logout'),
+
+                );
 
                 return $this->render('AcmeSearchBundle:Search:index.html.twig', array('form' => $form->createView(), 'session' => $a, 'menu' => $menu));
 
@@ -132,9 +135,11 @@ class SearchController extends Controller
                 $a = '';
 
                 $menu = array(
-                    'All songs'=>'/playlist/page/1',
-                    'Registration'=>'registration',
-                    'Login'=>'login',
+
+                    'All songs' => '',
+                    'Registration' => $this->generateUrl('registration'),
+                    'Login' => $this->generateUrl('login'),
+
                 );
 
                 return $this->render('AcmeSearchBundle:Search:index.html.twig', array(
