@@ -35,6 +35,17 @@ class IndexController extends Controller
         define('STATUS_DELETE','delete');
 
         $em = $this->getDoctrine()->getManager();
+        $qb = $em->createQueryBuilder();
+
+
+         $qb->add('select', 'u')
+            ->add('from', 'Acme\RegistrationBundle\Entity\User u')
+            #->add('where', 'u.id = ?1')
+            ->setMaxResults( 1 );
+        $query = $qb->getQuery();
+        $array = $query->getArrayResult();
+        var_dump($array);
+        die;
 
         $entities = $em->getRepository('AcmeRegistrationBundle:User')->findAll();
 

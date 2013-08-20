@@ -9,13 +9,16 @@
             {# sorting of properties based on query components #}
             <th>{{ knp_pagination_sortable(pagination, 'Id', 'a.gid') }}</th>
             <th{% if pagination.isSorted('a.Title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title', 'a.gtitle') }}</th>
+
         </tr>
 
         {# table body #}
-        {% for article in pagination %}
+        {% for k,v in pagination %}
             <tr {% if loop.index is odd %}class="color"{% endif %}>
-                <td>{{ article.gid }}</td>
-                <td>{{ article.gtitle }}</td>
+                {% for title in v %}
+
+                <td>{{  title }}</td>
+                {% endfor %}
             </tr>
         {% endfor %}
     </table>

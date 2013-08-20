@@ -11,13 +11,19 @@ class CategoryController extends Controller
     public function indexAction()
     {
 
-        $em    = $this->get('doctrine.orm.entity_manager');
-        $dql   = "SELECT a FROM AcmeSearchBundle:Genres a";
-        $query = $em->createQuery($dql);
+        $em = $this->getDoctrine()->getManager();
+        $qb = $em->createQueryBuilder();
+
+
+        $qb->add('select', 'c')
+            ->add('from', 'AcmeSearchBundle:Genres c')
+            ->setMaxResults( 50000 );
+        $query = $qb->getQuery();
+        $array = $query->getArrayResult();
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-            $query,
+            $array,
             $this->get('request')->query->get('page', 1)/*page number*/,
             25/*limit per page*/
         );

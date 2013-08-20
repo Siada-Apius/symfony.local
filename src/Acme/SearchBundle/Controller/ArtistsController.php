@@ -10,16 +10,25 @@ class ArtistsController extends Controller
 {
     public function indexAction()
     {
-        $em    = $this->get('doctrine.orm.entity_manager');
-        #$dql   = "SELECT a FROM AcmeSearchBundle:Artists a";
-        $dql   = "SELECT a FROM AcmeSearchBundle:Artists a WHERE a.aid < (500001)";
-        $query = $em->createQuery($dql);
+
+        $em = $this->getDoctrine()->getManager();
+        $qb = $em->createQueryBuilder();
+
+
+        $qb->add('select', 'a')
+            ->add('from', 'AcmeSearchBundle:Artists a')
+            ->setMaxResults( 50000 );
+        $query = $qb->getQuery();
+        $array = $query->getArrayResult();
+
+
+
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-            $query,
+            $array,
             $this->get('request')->query->get('page', 1)/*page number*/,
-            100/*limit per page*/
+            25/*limit per page*/
         );
 
         // parameters to template

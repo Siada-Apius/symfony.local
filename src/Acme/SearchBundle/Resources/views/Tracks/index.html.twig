@@ -8,20 +8,23 @@
 
     <table class="table table-bordered">
         <tr>
+            <th>Track Number</th>
+            <th>Disk Id</th>
             {# sorting of properties based on query components #}
             <th{% if pagination.isSorted('a.Title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title', 'a.atitle') }}</th>
+            <th>Track seconds</th>
         </tr>
 
+
         {# table body #}
-        <tr>
-            <th>
-                {% for k,v in pagination %}
-                    {% for title in v %}
-                        <li> {{  title }}</li>
-                    {% endfor %}
+        {% for k,v in pagination %}
+            <tr {% if loop.index is odd %}class="color"{% endif %}>
+                {% for title in v %}
+
+                    <td>{{  title }}</td>
                 {% endfor %}
-            <th>
-        </tr>
+            </tr>
+        {% endfor %}
     </table>
     {# display navigation #}
     <div class="pagination-centered">
