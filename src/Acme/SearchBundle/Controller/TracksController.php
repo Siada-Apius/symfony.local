@@ -10,6 +10,7 @@ class TracksController extends Controller
     {
 
 
+
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder();
 
@@ -21,8 +22,6 @@ class TracksController extends Controller
 
 
 
-
-
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $array,
@@ -31,7 +30,9 @@ class TracksController extends Controller
         );
 
         // parameters to template
+
         return $this->render('AcmeSearchBundle:Tracks:index.html.twig', array('pagination' => $pagination,));
+
     }
 
 }

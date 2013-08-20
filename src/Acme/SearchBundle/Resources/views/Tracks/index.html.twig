@@ -17,6 +17,7 @@
 
 
         {# table body #}
+
         {% for k,v in pagination %}
             <tr {% if loop.index is odd %}class="color"{% endif %}>
                 {% for title in v %}

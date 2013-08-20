@@ -40,16 +40,13 @@ class IndexController extends Controller
 
          $qb->add('select', 'u')
             ->add('from', 'Acme\RegistrationBundle\Entity\User u')
-            #->add('where', 'u.id = ?1')
-            ->setMaxResults( 1 );
+            ->setMaxResults(50000 );
         $query = $qb->getQuery();
         $array = $query->getArrayResult();
-        var_dump($array);
-        die;
 
-        $entities = $em->getRepository('AcmeRegistrationBundle:User')->findAll();
 
-        return $this->render('AcmeAdminBundle:Index:user.html.twig', array('entities' => $entities,'lock' => STATUS_LOCK ,'unlock'=> STATUS_UNLOCK , 'delete'=> STATUS_DELETE ));
+
+        return $this->render('AcmeAdminBundle:Index:user.html.twig', array('entities' => $array,'lock' => STATUS_LOCK ,'unlock'=> STATUS_UNLOCK , 'delete'=> STATUS_DELETE ));
 
     }
                     #edit user status(lock,unlock,delete)
