@@ -120,9 +120,10 @@ class SearchController extends Controller
 
                 $menu = array(
 
-                    'All songs' =>'/tracks/',
+                    'All Tracks' =>'/tracks/',
                     'All Category' => $this->generateUrl('SearchBundle_category'),
                     'All Artist' => $this->generateUrl('SearchBundle_artists'),
+                    'All Discs' => $this->generateUrl('SearchBundle_discs'),
                     'Create playlist' => $this->generateUrl('task_new'),
                     'Logout' => $this->generateUrl('logout'),
 
@@ -136,7 +137,7 @@ class SearchController extends Controller
 
                 $menu = array(
 
-                    'All songs' => '/tracks/',
+                    'All Tracks' => '/tracks/',
                     'Registration' => $this->generateUrl('registration'),
                     'Login' => $this->generateUrl('login'),
 

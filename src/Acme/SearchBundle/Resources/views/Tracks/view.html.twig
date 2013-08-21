@@ -1,0 +1,32 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AcmeSearchBundle:Artists:index{% endblock %}
+
+{% block body %}
+
+
+    <table class="table table-bordered">
+        <tr>
+            <th>Title</th>
+            <th>Album</th>
+            <th>Artist</th>
+            <th>Disc</th>
+        </tr>
+
+
+        {# table body #}
+
+        {% for v in data  %}
+            <tr>
+                <td>{{ v.ttitle }}</td>
+                <td> Album </td>
+                <td> Artist </td>
+                <td> Disc </td>
+
+            </tr>
+        {% endfor %}
+    </table>
+    {# display navigation #}
+
+
+{% endblock %}

@@ -19,3 +19,11 @@ SearchBundle_ajax:
     defaults: { _controller: AcmeSearchBundle:Search:getAjaxResults}
     requirements:
         _method: GET
+
+SearchBundle_discs:
+    pattern: /discs/
+    defaults: { _controller: AcmeSearchBundle:Discs:index }
+
+SearchBundle_tracks_view:
+        pattern: /tracks/view/{page}/{title}
+        defaults: { _controller: AcmeSearchBundle:Tracks:view }

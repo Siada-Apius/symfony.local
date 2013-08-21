@@ -8,19 +8,23 @@
     <table class="table table-bordered">
         <tr>
             <th>Title</th>
-            <th>Track Minutes</th>
+            <th>Release</th>
         </tr>
 
-
         {# table body #}
-
-        {% for k,v in pagination  %}
+        {% for v in pagination  %}
             <tr {% if loop.index is odd %}class="color"{% endif %}>
-                <td><a href="/app_dev.php/tracks/view/{{ loop.index }}/{{ v.ttitle }}">{{ v.ttitle }}</a></td>
-                <td>{{ v.tseconds / 60 }}</td>
-
+                <td>{{ v.dtitle }}</td>
+                <td>{{ v.dreleased }}</td>
             </tr>
         {% endfor %}
+
+        {#{% for v in release %}
+            <tr {% if loop.index is odd %}class="color"{% endif %}>
+                <td>{{ v }}</td>
+
+            </tr>
+        {% endfor %}#}
     </table>
     {# display navigation #}
     <div class="pagination-centered">
