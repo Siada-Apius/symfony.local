@@ -1,0 +1,33 @@
+{% extends "AcmeSearchBundle::layout.html.twig" %}
+
+{% block tutorial_body %}
+
+
+    <table class="table table-bordered">
+        <tr>
+            {% for v in menu %}
+
+                 <th>{{ v }}</th>
+
+            {% endfor %}
+        </tr>
+
+
+            {% for v in data %}
+
+                {% for k in v %}
+                    <tr>
+                    {% for r in k %}
+                        <td>{{ r }}</td>
+                    {% endfor %}
+                    </tr>
+                {% endfor %}
+
+            {% endfor %}
+
+
+
+
+    </table>
+
+{% endblock %}

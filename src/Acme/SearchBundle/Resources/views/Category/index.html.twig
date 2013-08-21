@@ -6,18 +6,16 @@
     <table class="table table-bordered">
         <tr>
             {# sorting of properties based on query components #}
-            <th>{{ knp_pagination_sortable(pagination, 'Id', 'a.gid') }}</th>
-            <th{% if pagination.isSorted('a.Title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title', 'a.gtitle') }}</th>
+
+            <th>Title</th>
 
         </tr>
 
         {# table body #}
-        {% for k,v in pagination %}
-            <tr {% if loop.index is odd %}class="color"{% endif %}>
-                {% for title in v %}
+        {% for v in pagination %}
 
-                <td>{{  title }}</td>
-                {% endfor %}
+               <td><a href="/category/view/{{v.gtitle}}/{{v.gid}}">{{v.gtitle}}</a></td>
+
             </tr>
         {% endfor %}
     </table>

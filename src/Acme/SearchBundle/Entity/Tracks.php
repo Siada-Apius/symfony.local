@@ -12,6 +12,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Tracks
 {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="discs_did", type="bigint", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $discsDid;
 
     /**
      * @var integer

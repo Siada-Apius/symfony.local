@@ -9,8 +9,6 @@ class TracksController extends Controller
     public function indexAction()
     {
 
-
-
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder();
 
@@ -19,10 +17,6 @@ class TracksController extends Controller
             ->setMaxResults(50000);
         $query = $qb->getQuery();
         $array = $query->getArrayResult();
-
-
-
-
 
 
         $paginator  = $this->get('knp_paginator');
@@ -40,24 +34,53 @@ class TracksController extends Controller
 
 
 
-    public function viewAction($page,$title)
+    public function viewAction($dId,$aId,$title)
     {
-      #var_dump($page);
-        #var_dump($title);
+
 
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder();
 
-        $qb->add('select', 't')
-            ->add('from', 'AcmeSearchBundle:Tracks t')
-            ->add('where', 't.ttitle = :identifier')
-            ->setParameter('identifier',$title)
-            ->setMaxResults(1);
-
+        #Select 'Track Title'
+        $qb->add('select', 't.ttitle')->add('from', 'AcmeSearchBundle:Tracks t')->add('where', 't.ttitle = :identifier')->setParameter('identifier',$title)->setMaxResults(1);
         $query = $qb->getQuery();
-        $array = $query->getResult();
+        $trackT  = $query->getArrayResult();
 
-        return $this->render('AcmeSearchBundle:Tracks:view.html.twig', array('data'=>$array));
+        #Select 'Track Minutes'
+        $qb->add('select', 't.tseconds')->add('from', 'AcmeSearchBundle:Tracks t')->add('where', 't.ttitle = :identifier')->setParameter('identifier',$title)->setMaxResults(1);
+        $query = $qb->getQuery();
+        $trackS  = $query->getArrayResult();
+        $trackS = $trackS['0']['tseconds'] / 60;
+        $trackM = substr((string)$trackS,0,3);
+
+
+        #Select 'Disc Title'
+        $qb->add('select', 'd.dtitle')->add('from', 'AcmeSearchBundle:Discs d')->add('where', 'd.did = :identifier')->setParameter('identifier',$dId)->setMaxResults(5);
+        $query = $qb->getQuery();
+        $DiscT = $query->getResult();
+
+        #Select 'Artist Name'
+        $qb->add('select', 'a.aname')->add('from', 'AcmeSearchBundle:Artists a')->add('where', 'a.aid = :identifier')->setParameter('identifier',$aId)->setMaxResults(5);
+        $query = $qb->getQuery();
+        $ArtistName = $query->getResult();
+
+
+        $data = array(
+            'trackTitle'=>$trackT['0']['ttitle'],
+            'discTitle'=> $DiscT['0']['dtitle'],
+            'artistName'=> $ArtistName['0']['aname'],
+            'trackMinutes'=>$trackM.' minutes',
+        );
+
+
+        $menu = array(
+            'track' => 'Track',
+            'album'=>'Album',
+            'artist'=> 'Artist',
+            'trackMinutes' => ' Track time');
+
+
+        return $this->render('AcmeSearchBundle:Tracks:view.html.twig', array('data'=>$data,'menu'=>$menu));
 
     }
 

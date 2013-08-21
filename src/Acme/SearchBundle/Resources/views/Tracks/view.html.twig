@@ -7,24 +7,27 @@
 
     <table class="table table-bordered">
         <tr>
-            <th>Title</th>
-            <th>Album</th>
-            <th>Artist</th>
-            <th>Disc</th>
+            {% for v in menu  %}
+                    <th>{{ v }}</th>
+
+            {% endfor %}
         </tr>
 
 
         {# table body #}
 
-        {% for v in data  %}
+
+
             <tr>
-                <td>{{ v.ttitle }}</td>
-                <td> Album </td>
-                <td> Artist </td>
-                <td> Disc </td>
+                {% for v in data  %}
+
+                        <td>{{v}}</td>
+
+                {% endfor %}
 
             </tr>
-        {% endfor %}
+
+
     </table>
     {# display navigation #}
 

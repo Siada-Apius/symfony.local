@@ -25,5 +25,13 @@ SearchBundle_discs:
     defaults: { _controller: AcmeSearchBundle:Discs:index }
 
 SearchBundle_tracks_view:
-        pattern: /tracks/view/{page}/{title}
+        pattern: /tracks/view/{dId}/{aId}/{title}
         defaults: { _controller: AcmeSearchBundle:Tracks:view }
+
+SearchBundle_category_view:
+                pattern: /category/view/{name}/{id}
+                defaults: { _controller: AcmeSearchBundle:Category:view }
+
+SearchBundle_disc_view:
+                pattern: /disc/view/{name}/{id}
+                defaults: { _controller: AcmeSearchBundle:Discs:view }

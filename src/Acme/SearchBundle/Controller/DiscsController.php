@@ -21,20 +21,6 @@ class DiscsController extends Controller
         $query = $qb->getQuery();
         $array = $query->getResult();
 
-
-
- /*       $title = array();
-        $release = array();
-
-        foreach($array as  $v){
-
-            $title[] = $v['dtitle'];
-            $release[] = $v['dreleased'];
-        }*/
-
-
-
-
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $array,
@@ -44,6 +30,25 @@ class DiscsController extends Controller
 
         // parameters to template
         return $this->render('AcmeSearchBundle:Discs:index.html.twig', array('pagination' => $pagination,));
+    }
+
+    public function viewAction($name,$id)
+
+    {
+
+
+        $em = $this->getDoctrine()->getManager();
+        $qb = $em->createQueryBuilder();
+
+        #Select 'Disc Author'
+        $qb->add('select', 'a.artistsAid')->add('from', 'AcmeSearchBundle:Discs a')->add('where', 'a.artistsAid = :identifier')->setParameter('identifier',$id)->setMaxResults(50000);
+        $query = $qb->getQuery();
+        $artistId = $query->getArrayResult();
+        print_r($artistId);die;
+
+
+
+        return $this->render('AcmeSearchBundle:Discs:view.html.twig', array());
     }
 
 }

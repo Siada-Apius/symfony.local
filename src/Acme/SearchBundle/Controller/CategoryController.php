@@ -15,11 +15,10 @@ class CategoryController extends Controller
         $qb = $em->createQueryBuilder();
 
 
-        $qb->add('select', 'c')
-            ->add('from', 'AcmeSearchBundle:Genres c')
-            ->setMaxResults( 50000 );
+        $qb->add('select', 'c')->add('from', 'AcmeSearchBundle:Genres c')->setMaxResults(50000);
         $query = $qb->getQuery();
-        $array = $query->getArrayResult();
+        $array = $query->getResult();
+
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -29,7 +28,42 @@ class CategoryController extends Controller
         );
 
         // parameters to template
-        return $this->render('AcmeSearchBundle:Category:index.html.twig', array('pagination' => $pagination));
+        return $this->render('AcmeSearchBundle:Category:index.html.twig', array('pagination' => $pagination,));
+
+    }
+
+
+    public function viewAction($name,$id)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $qb = $em->createQueryBuilder();
+
+
+        #Select ''
+        $qb->add('select', 't.dtitle')->add('from', 'AcmeSearchBundle:Discs t')->add('where', 't.genresGid = :identifier')->setParameter('identifier',$id)->setMaxResults(50000);
+        $query = $qb->getQuery();
+        $discTitle  = $query->getArrayResult();
+
+
+
+        $menu = array(
+            'Albums in this category',
+            'Artists',
+
+        );
+
+
+        $data = array(
+            $discTitle,
+            'Artist'
+
+        );
+
+
+
+        // parameters to template
+        return $this->render('AcmeSearchBundle:Category:view.html.twig', array('categoryName'=>$name,'menu'=>$menu, 'data'=>$data));
 
     }
 

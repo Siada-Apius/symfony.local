@@ -8,7 +8,7 @@
     <table class="table table-bordered">
         <tr>
             <th>Title</th>
-            <th>Track Minutes</th>
+            {#<th>Track Minutes</th>#}
         </tr>
 
 
@@ -16,8 +16,8 @@
 
         {% for k,v in pagination  %}
             <tr {% if loop.index is odd %}class="color"{% endif %}>
-                <td><a href="/app_dev.php/tracks/view/{{ loop.index }}/{{ v.ttitle }}">{{ v.ttitle }}</a></td>
-                <td>{{ v.tseconds / 60 }}</td>
+                <td><a href="/app_dev.php/tracks/view/{{ v.discsDid }}/{{ v.artistsAid }}/{{ v.ttitle }}">{{ v.ttitle }}</a></td>
+                {#<td>{{ v.tseconds / 60 }}</td>#}
 
             </tr>
         {% endfor %}
