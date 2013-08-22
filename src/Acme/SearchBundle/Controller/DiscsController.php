@@ -32,8 +32,7 @@ class DiscsController extends Controller
         return $this->render('AcmeSearchBundle:Discs:index.html.twig', array('pagination' => $pagination,));
     }
 
-    public function viewAction($name,$id)
-
+    public function viewAction($name,$id,$artistId)
     {
 
 
@@ -41,14 +40,33 @@ class DiscsController extends Controller
         $qb = $em->createQueryBuilder();
 
         #Select 'Disc Author'
-        $qb->add('select', 'a.artistsAid')->add('from', 'AcmeSearchBundle:Discs a')->add('where', 'a.artistsAid = :identifier')->setParameter('identifier',$id)->setMaxResults(50000);
+        $qb->add('select', 'a.aname')->add('from', 'AcmeSearchBundle:Artists a')->add('where', 'a.aid = :identifier')->setParameter('identifier',$artistId)->setMaxResults(50000);
         $query = $qb->getQuery();
-        $artistId = $query->getArrayResult();
-        print_r($artistId);die;
+        $artist = $query->getArrayResult();
+
+        #Select 'Disc Tracks'
+        $qb->add('select', 't.ttitle')->add('from', 'AcmeSearchBundle:Tracks t')->add('where', 't.discsDid = :identifier')->setParameter('identifier',$id)->setMaxResults(50000);
+        $query = $qb->getQuery();
+        $tracks = $query->getArrayResult();
+
+        #Select 'Genres id'
+        $qb->add('select', 'g.genresGid')->add('from', 'AcmeSearchBundle:Discs g')->add('where', $qb->expr()->andX(
+        $qb->expr()->eq('g.dtitle', ':identifier'),
+        $qb->expr()->like('g.did',':identifierKrasota')))->setParameter('identifier',$name)->setParameter('identifierKrasota',$id);
+        $query = $qb->getQuery();
+        $genresId = $query->getArrayResult();
+        $idcrasota = $genresId[0]['genresGid'];
 
 
 
-        return $this->render('AcmeSearchBundle:Discs:view.html.twig', array());
+
+
+        $menu = array(
+            'Artist',
+        );
+
+
+        return $this->render('AcmeSearchBundle:Discs:view.html.twig', array('artist'=>$artist,'menu'=>$menu ,'tracks'=>$tracks ,'diskName'=>$name));
     }
 
 }

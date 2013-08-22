@@ -33,5 +33,5 @@ SearchBundle_category_view:
                 defaults: { _controller: AcmeSearchBundle:Category:view }
 
 SearchBundle_disc_view:
-                pattern: /disc/view/{name}/{id}
+                pattern: /disc/view/{name}/{id}/{artistId}
                 defaults: { _controller: AcmeSearchBundle:Discs:view }

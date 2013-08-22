@@ -4,12 +4,34 @@
 
 {% block body %}
 
-
+                    <h2>{{ diskName }}</h2>
     <table class="table table-bordered">
 
 
+        <tr>
+            {% for v in menu %}
+
+                <th>{{ v }}</th>
+
+            {% endfor %}
+        </tr>
+
+        <tr>
+
+            {% for v in artist %}
+                <td>{{  v.aname  }}</td>
+            {% endfor %}
+
+        </tr>
+
     </table>
 
+
+             <h5>Tracks</h5>
+
+            {% for v in tracks %}
+                <li>{{  v.ttitle  }}</li>
+            {% endfor %}
 
 
 {% endblock %}
