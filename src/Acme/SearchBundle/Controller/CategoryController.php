@@ -41,9 +41,11 @@ class CategoryController extends Controller
 
 
         #Select ''
-        $qb->add('select', 't.dtitle')->add('from', 'AcmeSearchBundle:Discs t')->add('where', 't.genresGid = :identifier')->setParameter('identifier',$id)->setMaxResults(50000);
+        $qb->add('select', 't')->add('from', 'AcmeSearchBundle:Discs t')->add('where', 't.genresGid = :identifier')->setParameter('identifier',$id)->setMaxResults(50000);
         $query = $qb->getQuery();
-        $discTitle  = $query->getArrayResult();
+        $discData  = $query->getResult();
+
+
 
 
 
@@ -54,16 +56,16 @@ class CategoryController extends Controller
         );
 
 
-        $data = array(
+  /*      $data = array(
             $discTitle,
             'Artist'
 
-        );
+        );*/
 
 
 
         // parameters to template
-        return $this->render('AcmeSearchBundle:Category:view.html.twig', array('categoryName'=>$name,'menu'=>$menu, 'data'=>$data));
+        return $this->render('AcmeSearchBundle:Category:view.html.twig', array('categoryName'=>$name,'menu'=>$menu, 'dataData'=>$discData));
 
     }
 

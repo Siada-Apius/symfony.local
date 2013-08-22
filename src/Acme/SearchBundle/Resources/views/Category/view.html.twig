@@ -12,18 +12,24 @@
             {% endfor %}
         </tr>
 
+            {% for v in dataData %}
+        <tr>
+            <td> <a href="/disc/view/{{ v.dtitle }}/{{ v.did }}">{{ v.dtitle }}</a></td>
+        </tr>
+            {% endfor %}
 
-            {% for v in data %}
+
+{#            {% for v in data %}
 
                 {% for k in v %}
                     <tr>
                     {% for r in k %}
-                        <td>{{ r }}</td>
+                        <td><a href="">{{ r }}</a></td>
                     {% endfor %}
                     </tr>
                 {% endfor %}
 
-            {% endfor %}
+            {% endfor %}#}
 
 
 
