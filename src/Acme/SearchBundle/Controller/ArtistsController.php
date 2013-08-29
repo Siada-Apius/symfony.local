@@ -20,6 +20,7 @@ class ArtistsController extends Controller
             ->setMaxResults( 50000 );
         $query = $qb->getQuery();
         $array = $query->getArrayResult();
+        #print_r($array);die;
 
 
 
@@ -31,8 +32,38 @@ class ArtistsController extends Controller
             25/*limit per page*/
         );
 
+
         // parameters to template
-        return $this->render('AcmeSearchBundle:Artists:index.html.twig', array('pagination' => $pagination));
+        return $this->render('AcmeSearchBundle:Artists:index.html.twig', array('pagination' => $pagination,));
+    }
+
+
+
+
+    public function viewAction($name,$id)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $qb = $em->createQueryBuilder();
+
+        $qb->add('select', 'd')
+            ->add('from', 'AcmeSearchBundle:Discs d')->add('where', 'd.artistsAid = :identifier')->setParameter('identifier',$id)
+            ->setMaxResults( 50000 );
+        $query = $qb->getQuery();
+        $discsData = $query->getResult();
+        #print_r($discsData);die;
+
+
+        #print_r($array);die;
+
+
+
+
+
+
+
+        // parameters to template
+        return $this->render('AcmeSearchBundle:Artists:view.html.twig', array('artistName'=>$name,'discsData'=>$discsData));
     }
 
 }

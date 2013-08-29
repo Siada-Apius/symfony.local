@@ -21,7 +21,7 @@
        {% for v in artisData %}
             <tr>
                 {% for varray in v %}
-                     <td> <a href="">{{ varray.aname }}</a></td>
+                     <td> <a href="/artists/view/{{ varray.aname }}/{{ varray.aid }}">{{ varray.aname }}</a></td>
                 {% endfor %}
             </tr>
         {% endfor %}

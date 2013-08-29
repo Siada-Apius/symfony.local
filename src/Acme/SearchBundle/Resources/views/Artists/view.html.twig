@@ -1,0 +1,27 @@
+{% extends "::base.html.twig" %}
+
+
+
+{% block body %}
+
+<h4>Artist name</h4>
+{{ artistName }}
+
+
+    <table class="table table-bordered">
+        <tr>
+
+            <th>Albums</th>
+
+        </tr>
+
+
+        {% for v in discsData %}
+            <tr>
+            <td><a href="/disc/view/{{ v.dtitle }}/{{ v.did}}/{{ v.artistsAid}}">{{ v.dtitle }}</a></td>
+
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

@@ -5,21 +5,23 @@
 {% block body %}
 
 
-    <table class="table table-bordered">
+    <table class="table table-bordered" style="float: left;width: 350px">
         <tr>
-            {# sorting of properties based on query components #}
-            <th>{{ knp_pagination_sortable(pagination, 'Id', 'a.aid') }}</th>
-            <th{% if pagination.isSorted('a.Title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title', 'a.atitle') }}</th>
+
+
+            <th>Artist</th>
         </tr>
 
-        {# table body #}
-        {% for article in pagination %}
-            <tr {% if loop.index is odd %}class="color"{% endif %}>
-                <td>{{ article.aid }}</td>
-                <td>{{ article.aname }}</td>
+
+        {% for value in pagination %}
+
+            <tr>
+                <td><a href="/artists/view/{{ value.aname }}/{{ value.aid }}">{{ value.aname }}</a></td>
             </tr>
+
         {% endfor %}
     </table>
+    <div class="clear" style="clear: both"></div>
     {# display navigation #}
     <div class="pagination-centered">
 
