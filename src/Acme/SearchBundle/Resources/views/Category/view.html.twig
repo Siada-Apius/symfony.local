@@ -3,14 +3,8 @@
 {% block tutorial_body %}
 
 
-    <table class="table table-bordered">
-        <tr>
-            {% for v in menu %}
-
-                 <th>{{ v }}</th>
-
-            {% endfor %}
-        </tr>
+    <table class="table table-bordered" style="width: 405px;float: left">
+        <tr><th>Albums in this category</th></tr>
 
             {% for v in dataData %}
         <tr>
@@ -18,22 +12,25 @@
         </tr>
             {% endfor %}
 
+    </table>
 
-{#            {% for v in data %}
+    <table class="table table-bordered" style="width: 400px;margin-left: 450px">
 
-                {% for k in v %}
-                    <tr>
-                    {% for r in k %}
-                        <td><a href="">{{ r }}</a></td>
-                    {% endfor %}
-                    </tr>
+        <tr><th>Artists in this category</th></tr>
+
+       {% for v in artisData %}
+            <tr>
+                {% for varray in v %}
+                     <td> <a href="">{{ varray.aname }}</a></td>
                 {% endfor %}
-
-            {% endfor %}#}
-
-
-
+            </tr>
+        {% endfor %}
 
     </table>
+
+
+
+
+
 
 {% endblock %}

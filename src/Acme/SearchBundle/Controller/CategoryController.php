@@ -41,31 +41,38 @@ class CategoryController extends Controller
 
 
         #Select ''
-        $qb->add('select', 't')->add('from', 'AcmeSearchBundle:Discs t')->add('where', 't.genresGid = :identifier')->setParameter('identifier',$id)->setMaxResults(50000);
+        $qb->add('select', 't')->add('from', 'AcmeSearchBundle:Discs t')->add('where', 't.genresGid = :identifier')->setParameter('identifier',$id)->setMaxResults(5000);
         $query = $qb->getQuery();
-        $discData  = $query->getResult();
+        $discData  = $query->getArrayResult();
+
+        $artisData = array();
+
+        foreach($discData as $k => $v){
+
+            $userId[] = $v['artistsAid'];
+
+            $qb->add('select', 'a')->add('from', 'AcmeSearchBundle:Artists a')->add('where', 'a.aid = :identifier')->setParameter('identifier',$userId[$k])->setMaxResults(5000);
+            $query = $qb->getQuery();
+            $artisData[]  = $query->getArrayResult();
+
+        }
+        #print_r($artisData);die;
 
 
 
 
-
-        $menu = array(
-            'Albums in this category',
-            'Artists',
-
-        );
+/*        $qb->add('select', 'a')->add('from', 'AcmeSearchBundle:Artists a')->add('where', 'a.aid = :identifier')->setParameter('identifier',$artistId)->setMaxResults(50000);;
+        $query = $qb->getQuery();
+        $artistsData  = $query->getResult();*/
 
 
-  /*      $data = array(
-            $discTitle,
-            'Artist'
 
-        );*/
+
 
 
 
         // parameters to template
-        return $this->render('AcmeSearchBundle:Category:view.html.twig', array('categoryName'=>$name,'menu'=>$menu, 'dataData'=>$discData));
+        return $this->render('AcmeSearchBundle:Category:view.html.twig', array('categoryName'=>$name, 'dataData'=>$discData,'artisData'=>$artisData));
 
     }
 
