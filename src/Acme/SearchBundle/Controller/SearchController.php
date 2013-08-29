@@ -125,6 +125,7 @@ class SearchController extends Controller
                     'All Artist' => $this->generateUrl('SearchBundle_artists'),
                     'All Discs' => $this->generateUrl('SearchBundle_discs'),
                     'Create playlist' => $this->generateUrl('task_new'),
+                    'Admin' => $this->generateUrl('admin'),
                     'Logout' => $this->generateUrl('logout'),
 
                 );
