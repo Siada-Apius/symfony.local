@@ -42,9 +42,15 @@ class TracksController extends Controller
         $qb = $em->createQueryBuilder();
 
         #Select 'Track Title'
-        $qb->add('select', 't.ttitle')->add('from', 'AcmeSearchBundle:Tracks t')->add('where', 't.ttitle = :identifier')->setParameter('identifier',$title)->setMaxResults(1);
+        $qb->add('select', 't')->add('from', 'AcmeSearchBundle:Tracks t')->add('where', 't.ttitle = :identifier')->setParameter('identifier',$title)->setMaxResults(1);
         $query = $qb->getQuery();
-        $trackT  = $query->getArrayResult();
+        $trackData  = $query->getArrayResult();
+
+        #print_r($trackData);die;
+       # $trackT = $trackData[0]['ttitle'];
+        $trackId = $trackData[0]['discsDid'];
+        $artistId = $trackData[0]['artistsAid'];
+        #print_r($artistId);die;
 
         #Select 'Track Minutes'
         $qb->add('select', 't.tseconds')->add('from', 'AcmeSearchBundle:Tracks t')->add('where', 't.ttitle = :identifier')->setParameter('identifier',$title)->setMaxResults(1);
@@ -66,10 +72,12 @@ class TracksController extends Controller
 
 
         $data = array(
-            'trackTitle'=>$trackT['0']['ttitle'],
+            'trackTitle'=>$trackData[0]['ttitle'],
             'discTitle'=> $DiscT['0']['dtitle'],
             'artistName'=> $ArtistName['0']['aname'],
             'trackMinutes'=>$trackM.' minutes',
+            'DiskId'=>$trackData[0]['discsDid'],
+            'artistId'=>$trackData[0]['artistsAid'],
         );
 
 

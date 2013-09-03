@@ -19,11 +19,14 @@
 
 
             <tr>
-                {% for v in data  %}
 
-                        <td>{{v}}</td>
 
-                {% endfor %}
+                <td>{{data.trackTitle}}</td>
+                <td><a href="/disc/view/{{data.discTitle}}/{{data.DiskId}}/{{data.artistId}}">{{data.discTitle}}</a></td>
+                <td><a href="/artists/view/{{data.artistName}}/{{data.artistId }}">{{data.artistName}}</a></td>
+                <td>{{data.trackMinutes}}</td>
+
+
 
             </tr>
 

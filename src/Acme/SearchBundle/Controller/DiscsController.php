@@ -32,7 +32,7 @@ class DiscsController extends Controller
         return $this->render('AcmeSearchBundle:Discs:index.html.twig', array('pagination' => $pagination,));
     }
 
-    public function viewAction($name,$id,$artistId)
+    public function viewAction($name,$id,$artistId=null)
     {
 
 
@@ -40,7 +40,7 @@ class DiscsController extends Controller
         $qb = $em->createQueryBuilder();
 
         #Select 'Disc Author'
-        $qb->add('select', 'a.aname')->add('from', 'AcmeSearchBundle:Artists a')->add('where', 'a.aid = :identifier')->setParameter('identifier',$artistId)->setMaxResults(50000);
+        $qb->add('select', 'a')->add('from', 'AcmeSearchBundle:Artists a')->add('where', 'a.aid = :identifier')->setParameter('identifier',$artistId)->setMaxResults(50000);
         $query = $qb->getQuery();
         $artist = $query->getArrayResult();
 

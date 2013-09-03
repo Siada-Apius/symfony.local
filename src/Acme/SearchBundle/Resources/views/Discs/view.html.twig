@@ -19,7 +19,7 @@
         <tr>
 
             {% for v in artist %}
-                <td>{{  v.aname  }}</td>
+                <td><a href="/artists/view/{{  v.aname  }}/{{  v.aid  }}">{{  v.aname  }}</a></td>
             {% endfor %}
 
         </tr>
