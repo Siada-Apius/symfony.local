@@ -123,7 +123,7 @@ class SearchController extends Controller
                     'All Tracks' =>'/tracks/',
                     'All Category' => $this->generateUrl('SearchBundle_category'),
                     'All Artist' => $this->generateUrl('SearchBundle_artists'),
-                    'All Discs' => $this->generateUrl('SearchBundle_discs'),
+                    'All Albums' => $this->generateUrl('SearchBundle_discs'),
                     'Create playlist' => $this->generateUrl('task_new'),
                     'Admin' => $this->generateUrl('admin'),
                     'Logout' => $this->generateUrl('logout'),
