@@ -6,28 +6,23 @@
             {% include "AcmeSearchBundle:Search:form.html.twig" with {'form': form} %}
             <hr />
             <ul>
-                {% if films is defined %}
+                {% if searcher is defined %}
+                    {% for result in searcher %}
 
-                    {% for film in films %}
+                        <li>
+                            <a href="/app_dev.php/tracks/view/{{ result.discsDid }}/{{ result.artistsAid }}/{{ result.ttitle }}">{{ result.ttitle }}</a>
+                        </li>
 
-                        <li><a href="playlist/{{ film.id }}">{{ film.title }}</a></li>
-                {% else %}
-
-                    <div class="alert">Sorry ^^'</div>
-                {% endfor %}
-
+                    {% endfor %}
                 {% endif %}
 
                 {% if array.title is defined %}
-
                     {% for key, value in array.title %}
 
                         <li><a href="playlist/{{ key }}">{{ value }}</a></li>
 
                     {% endfor %}
-
                 {% endif %}
-
             </ul>
         </div>
     </div>

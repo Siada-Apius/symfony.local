@@ -4,34 +4,28 @@
 
 {% block body %}
 
-                    <h2>{{ diskName }}</h2>
-    <table class="table table-bordered">
+    <h2>{{ diskName }}</h2>
 
+    <table class="table table-bordered">
 
         <tr>
             {% for v in menu %}
-
                 <th>{{ v }}</th>
-
             {% endfor %}
         </tr>
 
         <tr>
-
             {% for v in artist %}
-                <td><a href="/artists/view/{{  v.aname  }}/{{  v.aid  }}">{{  v.aname  }}</a></td>
+                 <td><a href="{{ path('SearchBundle_artist_view', { 'name': v.aname, 'id': v.aid } ) }}">{{ v.aname }}</a></td>
             {% endfor %}
-
         </tr>
 
     </table>
 
+    <h5>Tracks</h5>
 
-             <h5>Tracks</h5>
-
-            {% for v in tracks %}
-                <li>{{  v.ttitle  }}</li>
-            {% endfor %}
-
+    {% for v in tracks %}
+        <li>{{  v.ttitle  }}</li>
+    {% endfor %}
 
 {% endblock %}

@@ -6,22 +6,29 @@
 
 
     <table class="table table-bordered">
+        <thead>
         <tr>
             <th>Title</th>
             {#<th>Track Minutes</th>#}
         </tr>
+        </thead>
 
-
-        {# table body #}
+        <tbody>
 
         {% for k,v in pagination  %}
-            <tr {% if loop.index is odd %}class="color"{% endif %}>
-                <td><a href="/app_dev.php/tracks/view/{{ v.discsDid }}/{{ v.artistsAid }}/{{ v.ttitle }}">{{ v.ttitle }}</a></td>
+
+            <tr {% if loop.index is odd %} class="color" {% endif %}>
+
+                <td><a href="{{ path('SearchBundle_tracks_view', {'dId': v.discsDid, 'aId': v.artistsAid, 'title': v.ttitle })}}">{{ v.ttitle }}</a></td>
                 {#<td>{{ v.tseconds / 60 }}</td>#}
 
             </tr>
+
         {% endfor %}
+
+        </tbody>
     </table>
+
     {# display navigation #}
     <div class="pagination-centered">
 

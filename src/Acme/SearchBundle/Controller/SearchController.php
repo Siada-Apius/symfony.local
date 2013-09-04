@@ -38,7 +38,8 @@ class SearchController extends Controller
 
                 $repository = $this->getDoctrine()
                     ->getManager()
-                    ->getRepository('AcmeSearchBundle:Playlist');
+                    ->getRepository('AcmeSearchBundle:Tracks')
+                ;
 
                 $films_list = $repository->searchFilm($title );
 
@@ -51,16 +52,16 @@ class SearchController extends Controller
 
                     foreach ($films_list as $val){
 
-
                         $em = $this->getDoctrine()->getManager();
-                        $query = $em->createQuery(
-                            'SELECT p
+                        $query = $em->createQuery('
+
+                            SELECT p
                             FROM AcmeSearchBundle:Playlist p
-                            WHERE p.category = :category'
-                        )->setParameter('category', $val->getId());
+                            WHERE p.category = :category
+
+                            ')->setParameter('category', $val->getId());
 
                         $products = $query->getResult();
-
 
                         $title = array();
 
@@ -78,6 +79,7 @@ class SearchController extends Controller
 
                         $a = 1;
                         return $this->render('AcmeSearchBundle:Search:results.html.twig', array(
+                            'searcher' => $films_list,
                             'array' => $array,
                             'form' => $form->createView(),
                             'session' => $a
@@ -86,6 +88,7 @@ class SearchController extends Controller
 
                         $a = '';
                         return $this->render('AcmeSearchBundle:Search:results.html.twig', array(
+                            'searcher' => $films_list,
                             'array' => $array,
                             'form' => $form->createView(),
                             'session' => $a
@@ -97,6 +100,7 @@ class SearchController extends Controller
 
                     $a = 1;
                     return $this->render('AcmeSearchBundle:Search:results.html.twig', array(
+                        'searcher' => $films_list,
                         'films' => $films_list,
                         'form' => $form->createView(),
                         'session' => $a
@@ -105,6 +109,7 @@ class SearchController extends Controller
 
                     $a = '';
                     return $this->render('AcmeSearchBundle:Search:results.html.twig', array(
+                        'searcher' => $films_list,
                         'films' => $films_list,
                         'form' => $form->createView(),
                         'session' => $a
@@ -120,7 +125,7 @@ class SearchController extends Controller
 
                 $menu = array(
 
-                    /*'All Tracks' =>'/tracks/',*/
+                    'All Tracks' =>'/tracks/',
                     'All Category' => $this->generateUrl('SearchBundle_category'),
                     'All Artist' => $this->generateUrl('SearchBundle_artists'),
                     'All Albums' => $this->generateUrl('SearchBundle_discs'),

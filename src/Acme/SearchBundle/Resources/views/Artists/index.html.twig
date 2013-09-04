@@ -6,13 +6,13 @@
 
 
     <table class="table table-bordered" style="float: left;width: 350px">
+        <thead>
         <tr>
-
-
             <th>Artist</th>
         </tr>
+        </thead>
 
-
+        <tbody>
         {% for value in pagination %}
 
             <tr>
@@ -20,7 +20,9 @@
             </tr>
 
         {% endfor %}
+        </tbody>
     </table>
+
     <div class="clear" style="clear: both"></div>
     {# display navigation #}
     <div class="pagination-centered">

@@ -1,27 +1,24 @@
 {% extends "::base.html.twig" %}
 
-
-
 {% block body %}
 
 <h4>Artist name</h4>
-{{ artistName }}
-
+<h3>{{ artistName }}</h3>
 
     <table class="table table-bordered">
+        <thead>
         <tr>
-
             <th>Albums</th>
-
         </tr>
+        </thead>
 
-
+        <tbody>
         {% for v in pagination %}
             <tr>
-            <td><a href="/disc/view/{{ v.dtitle }}/{{ v.did}}/{{ v.artistsAid}}">{{ v.dtitle }}</a></td>
-
+                <td><a href="{{ path('SearchBundle_disc_view', {'name': v.dtitle, 'id': v.did, 'artistId': v.artistsAid })}}">{{ v.dtitle }}</a></td>
             </tr>
         {% endfor %}
+        </tbody>
     </table>
 
     <div class="pagination-centered">

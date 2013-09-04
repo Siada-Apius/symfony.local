@@ -6,33 +6,23 @@
 
 
     <table class="table table-bordered">
+        <thead>
         <tr>
             {% for v in menu  %}
-                    <th>{{ v }}</th>
-
+                <th>{{ v }}</th>
             {% endfor %}
         </tr>
+        </thead>
 
-
-        {# table body #}
-
-
-
-            <tr>
-
-
-                <td>{{data.trackTitle}}</td>
-                <td><a href="/disc/view/{{data.discTitle}}/{{data.DiskId}}/{{data.artistId}}">{{data.discTitle}}</a></td>
-                <td><a href="/artists/view/{{data.artistName}}/{{data.artistId }}">{{data.artistName}}</a></td>
-                <td>{{data.trackMinutes}}</td>
-
-
-
-            </tr>
-
-
+        <tbody>
+        <tr>
+            <td>{{ data.trackTitle }}</td>
+            <td><a href="{{ path('SearchBundle_disc_view', { 'name': data.discTitle, 'id': data.DiskId, 'artistId': data.artistId } ) }}">{{ data.discTitle }}</a></td>
+            <td><a href="{{ path('SearchBundle_artist_view', { 'name': data.artistName, 'id': data.artistId } ) }}">{{ data.artistName }}</a></td>
+            <td>{{ data.trackMinutes }}</td>
+        </tr>
+        </tbody>
     </table>
     {# display navigation #}
-
 
 {% endblock %}
