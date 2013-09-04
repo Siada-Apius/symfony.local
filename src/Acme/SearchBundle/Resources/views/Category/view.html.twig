@@ -2,23 +2,36 @@
 
 {% block tutorial_body %}
 
+    <div style="width: 405px;float: left">
+        <table class="table table-bordered" >
+            <tr><th>Albums in this category</th></tr>
 
-    <table class="table table-bordered" style="width: 405px;float: left">
-        <tr><th>Albums in this category</th></tr>
+                {% for v in discpaginator %}
+            <tr>
+                <td> <a href="/disc/view/{{ v.dtitle }}/{{ v.did }}/{{ v.artistsAid }}">{{ v.dtitle }}</a></td>
+            </tr>
+                {% endfor %}
 
-            {% for v in dataData %}
-        <tr>
-            <td> <a href="/disc/view/{{ v.dtitle }}/{{ v.did }}/{{ v.artistsAid }}">{{ v.dtitle }}</a></td>
-        </tr>
-            {% endfor %}
+        </table>
 
-    </table>
+        <div class="pagination-centered" style="width: 400px;">
 
-    <table class="table table-bordered" style="width: 400px;margin-left: 450px">
+            <div class="alert-info">
+                <p>All pages: {{ discpaginator.getTotalItemCount }}</p>
+            </div>
+
+            {{ knp_pagination_render(discpaginator) }}
+        </div>
+
+    </div>
+
+
+    <div style="width: 400px;margin-left: 450px">
+    <table class="table table-bordered">
 
         <tr><th>Artists in this category</th></tr>
 
-       {% for v in artisData %}
+       {% for v in artistpaginator %}
             <tr>
                 {% for varray in v %}
                      <td> <a href="/artists/view/{{ varray.aname }}/{{ varray.aid }}">{{ varray.aname }}</a></td>
@@ -30,7 +43,15 @@
 
 
 
+    <div class="pagination-centered" style="width: 400px";>
 
+        <div class="alert-info">
+            <p>All pages: {{ artistpaginator.getTotalItemCount }}</p>
+        </div>
 
+        {{ knp_pagination_render(artistpaginator) }}
+    </div>
+
+</div>
 
 {% endblock %}

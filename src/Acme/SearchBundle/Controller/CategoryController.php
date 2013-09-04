@@ -56,23 +56,29 @@ class CategoryController extends Controller
             $artisData[]  = $query->getArrayResult();
 
         }
-        #print_r($artisData);die;
+
+            $array = array($discData,$artisData);
+
+            #var_dump($array);die;
+
+        $Discpaginator  = $this->get('knp_paginator');
+        $Discpaginator = $Discpaginator->paginate(
+            $discData,
+            $this->get('request')->query->get('page', 1)/*page number*/,
+            25/*limit per page*/
+        );
 
 
-
-
-/*        $qb->add('select', 'a')->add('from', 'AcmeSearchBundle:Artists a')->add('where', 'a.aid = :identifier')->setParameter('identifier',$artistId)->setMaxResults(50000);;
-        $query = $qb->getQuery();
-        $artistsData  = $query->getResult();*/
-
-
-
-
-
+        $Artistpaginator  = $this->get('knp_paginator');
+        $Artistpaginator = $Artistpaginator->paginate(
+            $artisData,
+            $this->get('request')->query->get('page', 1)/*page number*/,
+            25/*limit per page*/
+        );
 
 
         // parameters to template
-        return $this->render('AcmeSearchBundle:Category:view.html.twig', array('categoryName'=>$name, 'dataData'=>$discData,'artisData'=>$artisData));
+        return $this->render('AcmeSearchBundle:Category:view.html.twig', array('categoryName'=>$name, 'dataData'=>$discData,'artisData'=>$artisData,'discpaginator' => $Discpaginator,'artistpaginator' => $Artistpaginator));
 
     }
 
