@@ -6,19 +6,18 @@
     <table class="table table-bordered">
         <tr>
             {# sorting of properties based on query components #}
-
             <th>Title</th>
-
         </tr>
 
         {# table body #}
         {% for v in pagination %}
 
-               <td><a href="/category/view/{{v.gtitle}}/{{v.gid}}">{{v.gtitle}}</a></td>
-
+            <tr>
+                <td><a href="{{ path('SearchBundle_category_view', { 'name': v.gtitle, 'id': v.gid } ) }}">{{ v.gtitle }}</a></td>
             </tr>
         {% endfor %}
     </table>
+
     {# display navigation #}
     <div class="pagination-centered">
 

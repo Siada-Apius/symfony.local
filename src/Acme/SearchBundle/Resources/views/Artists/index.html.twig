@@ -16,7 +16,7 @@
         {% for value in pagination %}
 
             <tr>
-                <td><a href="/artists/view/{{ value.aname }}/{{ value.aid }}">{{ value.aname }}</a></td>
+                <td><a href="{{ path('SearchBundle_artist_view', { 'name': value.aname, 'id': value.aid } ) }}">{{ value.aname }}</a></td>
             </tr>
 
         {% endfor %}

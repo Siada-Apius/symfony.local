@@ -125,7 +125,7 @@ class SearchController extends Controller
 
                 $menu = array(
 
-                    'All Tracks' =>'/tracks/',
+                    'All Tracks' => $this->generateUrl('SearchBundle_tracks'),
                     'All Category' => $this->generateUrl('SearchBundle_category'),
                     'All Artist' => $this->generateUrl('SearchBundle_artists'),
                     'All Albums' => $this->generateUrl('SearchBundle_discs'),

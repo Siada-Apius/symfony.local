@@ -14,7 +14,7 @@
         {# table body #}
         {% for v in pagination  %}
             <tr>
-                <td><a href="/disc/view/{{ v.dtitle }}/{{ v.did}}/{{ v.artistsAid}}">{{ v.dtitle }}</a></td>
+                <td><a href="{{ path('SearchBundle_disc_view', { 'name': v.dtitle, 'id': v.did, 'artistId': v.artistsAid} ) }}">{{ v.dtitle }}</a></td>
                 <td>{{ v.dreleased }}</td>
             </tr>
         {% endfor %}
