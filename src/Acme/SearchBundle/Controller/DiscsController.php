@@ -75,7 +75,7 @@ class DiscsController extends Controller
         $query = $qb->getQuery();
         $genresId = $query->getArrayResult();
 
-        $idcrasota = $genresId[0]['genresGid'];     // --- ????
+        #$idcrasota = $genresId[0]['genresGid'];     // --- ????
 
 
         $menu = array(
