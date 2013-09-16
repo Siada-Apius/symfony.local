@@ -3,14 +3,14 @@
 
     <meta charset="UTF-8"/>
 
-    <title>Bootstrap from Twitter</title>
+    <title></title>
 
     <meta name="viewport" content="width-device-width initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
-    <link rel="stylesheet" href="{{ asset('bundles/acmetest/bootstrap/css/bootstrap.css') }}" />
-    <link rel="stylesheet" href="{{ asset('bundles/acmetest/bootstrap/css/bootstrap-responsive.css') }}" />
+    {#<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>#}
+    <link rel="stylesheet" href="/css/main.css" />
+   {# <link rel="stylesheet" href="{{ asset('bundles/acmetest/bootstrap/css/bootstrap-responsive.css') }}" />#}
 
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery.ui.all.css">
 
@@ -23,24 +23,33 @@
 <body>
 <div class="container">
 
-    <div class="navbar nav-tabs">
-        <div class="container border">
-            <a class="brand" href="{{ path('acme_index_homepage') }}">Index Symfony2</a>
-            <a class="brand" href="{{ path('admin') }}">Admin Symfony2</a>
+
+
+    <div class="header">
+
+        <div id=logo>
+            <a href="/"><img src="/images/logo.png"></a>
+
         </div>
+
+        <div class="navigation-div">
+
+            {% for  key, link in menu %}
+
+                    <span class="navigation-link"><a style="text-decoration: none;color: #907F92;font:  italic 80% Verdana;" href="{{ link }}" >{{ key }}</a></span>
+
+            {% endfor %}
+
+        </div>
+
     </div>
-
-    <div class="container well">
-
-        {% block body %}
-
-            {% block search %}
-            {% endblock %}
-
-        {% endblock %}
-
-    </div><!-- /container -->
 </div>
+{% block body %}
+
+    {% block search %}
+    {% endblock %}
+
+{% endblock %}
 
 </body>
 

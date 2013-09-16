@@ -10,10 +10,6 @@ SearchBundle_category:
     pattern:   /category/
     defaults:  { _controller: AcmeSearchBundle:Category:index }
 
-SearchBundle_search:
-    pattern:   /
-    defaults:  { _controller: AcmeSearchBundle:Search:search }
-
 SearchBundle_ajax:
     pattern: /ajax
     defaults: { _controller: AcmeSearchBundle:Search:getAjaxResults}
