@@ -25,6 +25,11 @@ class IndexController extends Controller
 
         $user = $this->container->get('security.context')->getToken()->getUsername();
 
+        $form = $this->createFormBuilder()
+            ->add('task', 'text')
+            ->add('Search', 'submit')
+            ->getForm();
+
         if ($user != 'anon.'){
             $a = 1;
 
@@ -41,7 +46,7 @@ class IndexController extends Controller
             );
 
 
-            return $this->render('AcmeIndexBundle:Index:index.html.twig', array('name' => $user, 'session' => $a,'menu' => $menu));
+            return $this->render('AcmeIndexBundle:Index:index.html.twig', array('name' => $user, 'session' => $a,'menu' => $menu,'form' => $form->createView()));
         } else {
 
             $a = '';
@@ -55,11 +60,8 @@ class IndexController extends Controller
             );
 
             return $this->render('AcmeIndexBundle:Index:index.html.twig', array(
-                 'session' => $a,'menu'=>$menu
+                 'session' => $a,'menu'=>$menu, 'form' => $form->createView()
             ));
-
-
-
 
 
     }

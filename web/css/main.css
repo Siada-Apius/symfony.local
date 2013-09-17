@@ -1,3 +1,13 @@
+body {
+    font: Arial;
+}
+html {
+    min-width: 1024px;
+    min-height: 1024px;
+
+
+}
+
 #logo {
     width: 334px;
     height: 76px;
@@ -12,6 +22,7 @@
     /*outline: 1px solid #000000;*/
     margin-left: 378px;
     background-color: #e8e4e6;
+    text-align: right;
 }
 
 
@@ -19,11 +30,11 @@ span.navigation-link {
    /* outline: 1px solid #000000;*/
     width: 200px;
     height: 40px;
-    padding: 25px 34px;
+    padding: 25px 20px;
     position: relative;
     top: 28px;
     background-color: #e8e4e6;
-    font:italic arial,sans-serif;
+    font: arial;
 ;
 
 }
@@ -34,17 +45,19 @@ span.navigation-link {
 .sound-but {
     height: 134px;
     border: 1px solid #C8C3CA;
+    background-image:url('../images/texture.png'); ;
 }
 
 .sound-but-left {
-margin-left: 120px;
+margin-left: 16%;
 
 
 }
 
 .sound-but-right {
 
-    margin-left: 777px;
+    margin-right:16%;
+    float: right;
 
 }
 
@@ -69,7 +82,7 @@ margin-left: 120px;
 
    position: absolute;
     top: 89px;
-    left: 35px;
+    left: 11%;
 
 }
 
@@ -77,14 +90,14 @@ margin-left: 120px;
 
     position: absolute;
     top: 177px;
-    left: 35px;
+    left: 11%;
 }
 
 
 #screw-1-right{
     position: absolute;
     top: 89px;
-    right: 34px;
+    right: 11%;
 }
 
 
@@ -92,33 +105,33 @@ margin-left: 120px;
 
     position: absolute;
     top: 177px;
-    right: 35px;
+    right: 11%;
 }
 
 #content {
-    outline: 1px solid #C8C3CA;
-    height: 500px;
+    /*outline: 1px solid #C8C3CA;*/
+   /* height: 500px;*/
     margin: 50px 50px;
 }
 
 #left-side{
 
-    width: 500px;
-    height: 300px;
+    width: 50%;
+   /* height: 300px;*/
     float: left;
-    outline: 1px solid yellow;
-    margin: 30px 30px;
+    /*outline: 1px solid #C8C3CA;*/
+
 
 }
 
 
 #right-side{
 
-    width: 500px;
-    height: 300px;
-    outline: 1px solid green;
-    margin-left: 600px;
-    margin-top:30px ;
+    width: 50%;
+   /* height: 300px;*/
+   /* outline: 1px solid #C8C3CA;*/
+    margin-left: 50%;
+
 
 
 }
@@ -131,3 +144,146 @@ margin-left: 120px;
 body {
     background-color: #EFEFEF;
 }
+
+
+#content-left{
+    /*outline: 1px solid #C8C3CA;*/
+    width: 550px;
+    height: 700px;
+    margin: 0 auto;
+
+
+}
+
+#content-right{
+   /* outline: 1px solid #C8C3CA;*/
+    width: 550px;
+    height: 700px;
+    margin: 0 auto;
+}
+
+#popular-playlists {
+
+    height: 50%;
+    width: 100%;
+    /*outline: 1px solid #C8C3CA;*/
+
+}
+#recent-searches {
+
+    height: 50%;
+    width: 100%;
+   /* outline: 1px solid #C8C3CA;*/
+
+}
+
+.popular-playlists-title {
+    outline: 1px solid #C8C3CA;
+    padding: 1px 25px;
+    background-color: #FAFAFA;
+    color: #605462;
+    font: 80% Arial;
+}
+
+.recent-searches-title {
+    outline: 1px solid #C8C3CA;
+    padding: 1px 25px;
+    background-color: #FAFAFA;
+    color: #605462;
+    font: 80% Arial;
+}
+
+.recent-searches-title-right {
+    outline: 1px solid #C8C3CA;
+    padding: 1px 25px;
+    background-color: #FAFAFA;
+    color: #605462;
+    font: 80% Arial;
+
+}
+
+.recent-searches-right-info table, .recent-searches-info table {
+
+    width: 100%;
+    border: 1px solid #C8C3CA;
+    color: #907F92;
+    font:80% Arial;
+}
+
+.recent-searches-right-info th,td {
+
+    text-align: left;
+   /* vertical-align: top;*/
+
+}
+
+.recent-searches-info th,td {
+
+    text-align: left;
+    /*vertical-align: top;*/
+
+}
+
+.search-block {
+
+    position: absolute;
+   /* outline: 1px solid #000000;*/
+    width: 531px;
+    height: 133px;
+    top: 85px;
+    left: 409px;
+
+}
+
+.search-block-small {
+    width: 478px;
+    height: 70px;
+    background-color: #AA9AAD;
+    margin: 32px auto;
+}
+.required {
+    display: none;
+}
+
+#form_Search {
+    position: relative;
+    top: -9px;
+    left: 346px;
+    width:113px ;
+    height:35px ;
+    background: #E9E9E9;
+    color: #AA9AAD;
+    font-size: 10pt; /* Размер шрифта в пунктах */
+}
+#form_task {
+    position: relative;
+    top: 23px;
+    left: 50px;
+    width: 274px;
+    height: 21px;
+}
+
+.white {
+    background-color: #FFFFFF;
+}
+
+.dark {
+    background-color:  #EFEFEF;
+}
+
+
+.recent-searches-info tr {
+    height: 30px;
+}
+
+.recent-searches-right-info tr {
+    height: 30px;
+}
+
+.footer{
+height: 25px;
+background-image: url('../images/texture.png');
+    border: 1px solid #C8C3CA;
+}
+
+
