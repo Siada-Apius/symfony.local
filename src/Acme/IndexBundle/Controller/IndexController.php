@@ -25,47 +25,23 @@ class IndexController extends Controller
 
         $user = $this->container->get('security.context')->getToken()->getUsername();
 
+
+        //search form
         $form = $this->createFormBuilder()
             ->add('task', 'text')
             ->add('Search', 'submit')
             ->getForm();
 
-        if ($user != 'anon.'){
-            $a = 1;
-
-            $menu = array(
-
-                'All Tracks' => $this->generateUrl('SearchBundle_tracks'),
-                'All Category' => $this->generateUrl('SearchBundle_category'),
-                'All Artist' => $this->generateUrl('SearchBundle_artists'),
-                'All Albums' => $this->generateUrl('SearchBundle_discs'),
-                'Create playlist' => $this->generateUrl('task_new'),
-                'Admin' => $this->generateUrl('admin'),
-                'Logout' => $this->generateUrl('logout'),
-
-            );
 
 
-            return $this->render('AcmeIndexBundle:Index:index.html.twig', array('name' => $user, 'session' => $a,'menu' => $menu,'form' => $form->createView()));
-        } else {
 
-            $a = '';
-
-            $menu = array(
-
-                'All Tracks' => '/tracks/',
-                'Registration' => $this->generateUrl('registration'),
-                'Login' => $this->generateUrl('login'),
-
-            );
 
             return $this->render('AcmeIndexBundle:Index:index.html.twig', array(
-                 'session' => $a,'menu'=>$menu, 'form' => $form->createView()
+                 'user'=>$user, 'form' => $form->createView()
             ));
 
 
     }
 
-}
 
 }

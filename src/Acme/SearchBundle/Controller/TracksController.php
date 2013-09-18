@@ -8,7 +8,7 @@ class TracksController extends Controller
 {
     public function indexAction()
     {
-
+        $user = $this->container->get('security.context')->getToken()->getUsername();
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder();
 
@@ -28,7 +28,7 @@ class TracksController extends Controller
 
         // parameters to template
 
-        return $this->render('AcmeSearchBundle:Tracks:index.html.twig', array('pagination' => $pagination,));
+        return $this->render('AcmeSearchBundle:Tracks:index.html.twig', array('pagination' => $pagination,'user'=>$user));
 
     }
 
@@ -37,7 +37,7 @@ class TracksController extends Controller
     public function viewAction($dId,$aId,$title)
     {
 
-
+        $user = $this->container->get('security.context')->getToken()->getUsername();
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder();
 
@@ -88,7 +88,7 @@ class TracksController extends Controller
             'trackMinutes' => ' Track time');
 
 
-        return $this->render('AcmeSearchBundle:Tracks:view.html.twig', array('data'=>$data,'menu'=>$menu));
+        return $this->render('AcmeSearchBundle:Tracks:view.html.twig', array('data'=>$data,'menu'=>$menu,'user'=>$user));
 
     }
 

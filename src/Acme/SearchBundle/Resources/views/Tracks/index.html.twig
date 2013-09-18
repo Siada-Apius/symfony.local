@@ -4,39 +4,93 @@
 
 {% block body %}
 
+<div class="tracks-title">
+    <div id="left-tracks-title"></div>
 
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>Title</th>
-            {#<th>Track Minutes</th>#}
-        </tr>
-        </thead>
 
-        <tbody>
 
-        {% for k,v in pagination  %}
 
-            <tr {% if loop.index is odd %} class="color" {% endif %}>
+    <div id="right-tracks-title">
 
-                <td><a href="{{ path('SearchBundle_tracks_view', {'dId': v.discsDid, 'aId': v.artistsAid, 'title': v.ttitle })}}">{{ v.ttitle }}</a></td>
-                {#<td>{{ v.tseconds / 60 }}</td>#}
 
-            </tr>
+        <img src="/images/sound_but_left.png">
 
-        {% endfor %}
+        <img id="track-image-screw1" src="/images/screw_1.png">
+        <img id="track-image-screw2" src="/images/screw_2.png">
 
-        </tbody>
-    </table>
-
-    {# display navigation #}
-    <div class="pagination-centered">
-
-        <div class="alert-info">
-            <p>All pages: {{ pagination.getTotalItemCount }}</p>
-        </div>
-
-        {{ knp_pagination_render(pagination) }}
     </div>
 
+
+
+
+    <div id="center-tracks-title"></div>
+
+
+</div>
+
+
+
+
+<div id="content">
+
+    <div class="tracks-description">
+
+        {#<div id="track-info"></div>#}
+
+        <div id="equalizer">
+
+            <img src="/images/eq_static.png" width="405" height="220">
+        </div>
+
+
+    </div>
+
+    <div class="tracks-list">
+
+
+        <table id="track-table">
+            <thead>
+            <tr>
+                <th>All Tracks </th>
+                {#<th>Track Minutes</th>#}
+            </tr>
+            </thead>
+
+            <tbody>
+
+            {% for k,v in pagination  %}
+
+                <tr {% if loop.index is odd %} class="color" {% endif %}>
+
+                    <td class="tracks"><a href="{{ path('SearchBundle_tracks_view', {'dId': v.discsDid, 'aId': v.artistsAid, 'title': v.ttitle })}}">{{ v.ttitle }}</a></td>
+                    {#<td>{{ v.tseconds / 60 }}</td>#}
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+        {# display navigation #}
+        <div id="track-pagination">
+
+{#            <div class="alert-info">
+                <p>All pages: {{ pagination.getTotalItemCount }}</p>
+            </div>#}
+
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    </div>
+</div>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+                $(".tracks:even").css("background-color", "#FFFFFF");
+
+
+        })
+
+    </script>
 {% endblock %}

@@ -17,10 +17,13 @@
     <!-- HTML5 shim, for IE6-8 support of HTML elements -->
     <!-- (if it IE9 -->
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
     <!-- end if -->
 </head>
 
 <body>
+
+
 <div class="container">
 
 
@@ -34,11 +37,33 @@
 
         <div class="navigation-div">
 
-            {% for  key, link in menu %}
 
-                    <span class="navigation-link"><a style="text-decoration: none;color: #605462;font:  80% Arial;" href="{{ link }}" >{{ key }}</a></span>
+            {% if user != 'anon.' %}
 
-            {% endfor %}
+            {% set items = { 'All Tracks': '/tracks',
+                             'All Category': '/category',
+                             'All Artist': '/artists',
+                             'All Albums': '/discs',
+                             'Create playlist': '/playlist/new',
+                             'Admin': '/admin',
+                             'Logout': '/logout'} %}
+            {% else %}
+
+                {% set items = { 'All Tracks': '/tracks',
+                                    'Login': '/login',
+                                    'Registration': '/registration',
+                } %}
+
+
+            {% endif %}
+
+                {% for  key, link in items %}
+
+                        <span class="navigation-link"><a style="text-decoration: none;color: #605462;font:  80% Arial;" href="{{ link }}" >{{ key }}</a></span>
+
+                {% endfor %}
+
+
 
         </div>
 
