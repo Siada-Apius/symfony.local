@@ -5,25 +5,69 @@
 {% block body %}
 
 <div class="tracks-title">
-    <div id="left-tracks-title"></div>
+    <div id="left-tracks-title">
+        <div style="float: left;width: 20% ;height: 134px">
+            <div class="tracks-title-wrapper">
+                <img id="track-left-image-screw2" src="/images/screw_2.png" width="27px" height="28px">
+            </div>
+        </div>
 
 
+        <div style="float: right;width: 57%;height: 134px">
+            <div class="tracks-title-wrapper">
+                <img id="track-radio" src="/images/radio.png" width="340px" height="52px">
+            </div>
+        </div>
 
 
-    <div id="right-tracks-title">
-
-
-        <img src="/images/sound_but_left.png">
-
-        <img id="track-image-screw1" src="/images/screw_1.png">
-        <img id="track-image-screw2" src="/images/screw_2.png">
+        <div style="width: 23% ;margin-left: 20%;height: 134px">
+            <div class="tracks-title-wrapper">
+                <div style="height: 30px; width: 145px; padding: 20px 2px;" >
+                    <a href="/">Home</a>/
+                    <a href="/artists">All Artists</a>/
+                    <a href="/tracks">All Tracks</a>
+                </div>
+            </div>
+        </div>
 
     </div>
 
 
 
 
-    <div id="center-tracks-title"></div>
+    <div id="right-tracks-title">
+
+        <div style="float: left;width: 60%;height: 134px;">
+            <img src="/images/sound_but_left.png" width="164px" height="133px">
+        </div>
+
+        <div style="width: 32%; margin-left: 68%;height: 134px;">
+            <div style="height: 50%">
+                <img id="track-image-screw1" src="/images/screw_1.png" width="27px" height="28px">
+            </div>
+
+            <div style="height: 50%;">
+                <img id="track-image-screw2" src="/images/screw_2.png" width="27px" height="28px">
+            </div>
+        </div>
+
+
+
+
+        </div>
+
+
+
+
+        <div id="center-tracks-title">
+
+            <div>
+
+                {{ form(tracksSearchForm) }}
+
+            </div>
+
+        </div>
 
 
 </div>
@@ -63,7 +107,6 @@
                 <tr {% if loop.index is odd %} class="color" {% endif %}>
 
                     <td class="tracks"><a href="{{ path('SearchBundle_tracks_view', {'dId': v.discsDid, 'aId': v.artistsAid, 'title': v.ttitle })}}">{{ v.ttitle }}</a></td>
-                    {#<td>{{ v.tseconds / 60 }}</td>#}
 
                 </tr>
 
@@ -72,13 +115,7 @@
             </tbody>
         </table>
 
-        {# display navigation #}
         <div id="track-pagination">
-
-{#            <div class="alert-info">
-                <p>All pages: {{ pagination.getTotalItemCount }}</p>
-            </div>#}
-
             {{ knp_pagination_render(pagination) }}
         </div>
     </div>
@@ -94,3 +131,5 @@
 
     </script>
 {% endblock %}
+
+

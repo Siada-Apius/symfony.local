@@ -10,7 +10,7 @@ class ArtistsController extends Controller
 {
     public function indexAction()
     {
-
+        $user = $this->container->get('security.context')->getToken()->getUsername();
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder();
 
@@ -22,7 +22,10 @@ class ArtistsController extends Controller
         $array = $query->getArrayResult();
         #print_r($array);die;
 
-
+        $form = $this->createFormBuilder()
+            ->add('task', 'text')
+            ->add('Search', 'submit')
+            ->getForm();
 
 
         $paginator  = $this->get('knp_paginator');
@@ -34,7 +37,7 @@ class ArtistsController extends Controller
 
 
         // parameters to template
-        return $this->render('AcmeSearchBundle:Artists:index.html.twig', array('pagination' => $pagination,));
+        return $this->render('AcmeSearchBundle:Artists:index.html.twig', array('pagination' => $pagination,'user'=>$user,'form'=>$form->createView()));
     }
 
 
@@ -42,7 +45,7 @@ class ArtistsController extends Controller
 
     public function viewAction($name,$id)
     {
-
+        $user = $this->container->get('security.context')->getToken()->getUsername();
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder();
 
@@ -51,12 +54,6 @@ class ArtistsController extends Controller
             ->setMaxResults( 50000 );
         $query = $qb->getQuery();
         $discsData = $query->getResult();
-        #print_r($discsData);die;
-
-
-        #print_r($array);die;
-
-
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -68,7 +65,7 @@ class ArtistsController extends Controller
 
 
         // parameters to template
-        return $this->render('AcmeSearchBundle:Artists:view.html.twig', array('artistName'=>$name,'discsData'=>$discsData,'pagination' => $pagination,));
+        return $this->render('AcmeSearchBundle:Artists:view.html.twig', array('artistName'=>$name,'discsData'=>$discsData,'pagination' => $pagination, 'user'=>$user));
     }
 
 }

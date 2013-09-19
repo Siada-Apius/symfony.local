@@ -3,6 +3,9 @@
 namespace Acme\SearchBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Acme\SearchBundle\Form\FilmType;
+use Acme\SearchBundle\Form\FilmHandler;
+
 
 class TracksController extends Controller
 {
@@ -26,9 +29,14 @@ class TracksController extends Controller
             25/*limit per page*/
         );
 
+        $tracksSearchForm = $this->createFormBuilder()
+            ->add('task', 'text')
+            ->add('Search', 'submit')
+            ->getForm();
+
         // parameters to template
 
-        return $this->render('AcmeSearchBundle:Tracks:index.html.twig', array('pagination' => $pagination,'user'=>$user));
+        return $this->render('AcmeSearchBundle:Tracks:index.html.twig', array('pagination' => $pagination,'user'=>$user,'tracksSearchForm'=>$tracksSearchForm->createView()));
 
     }
 
@@ -45,12 +53,6 @@ class TracksController extends Controller
         $qb->add('select', 't')->add('from', 'AcmeSearchBundle:Tracks t')->add('where', 't.ttitle = :identifier')->setParameter('identifier',$title)->setMaxResults(1);
         $query = $qb->getQuery();
         $trackData  = $query->getArrayResult();
-
-        #print_r($trackData);die;
-       # $trackT = $trackData[0]['ttitle'];
-        $trackId = $trackData[0]['discsDid'];
-        $artistId = $trackData[0]['artistsAid'];
-        #print_r($artistId);die;
 
         #Select 'Track Minutes'
         $qb->add('select', 't.tseconds')->add('from', 'AcmeSearchBundle:Tracks t')->add('where', 't.ttitle = :identifier')->setParameter('identifier',$title)->setMaxResults(1);
@@ -70,7 +72,6 @@ class TracksController extends Controller
         $query = $qb->getQuery();
         $ArtistName = $query->getResult();
 
-
         $data = array(
             'trackTitle'=>$trackData[0]['ttitle'],
             'discTitle'=> $DiscT['0']['dtitle'],
@@ -81,14 +82,9 @@ class TracksController extends Controller
         );
 
 
-        $menu = array(
-            'track' => 'Track',
-            'album'=>'Album',
-            'artist'=> 'Artist',
-            'trackMinutes' => ' Track time');
 
 
-        return $this->render('AcmeSearchBundle:Tracks:view.html.twig', array('data'=>$data,'menu'=>$menu,'user'=>$user));
+        return $this->render('AcmeSearchBundle:Tracks:view.html.twig', array('data'=>$data,'user'=>$user,));
 
     }
 
