@@ -17,7 +17,7 @@ class ArtistsController extends Controller
 
         $qb->add('select', 'a')
             ->add('from', 'AcmeSearchBundle:Artists a')
-            ->setMaxResults( 50000 );
+            ->setMaxResults( 5000 );
         $query = $qb->getQuery();
         $array = $query->getArrayResult();
         #print_r($array);die;
@@ -51,7 +51,7 @@ class ArtistsController extends Controller
 
         $qb->add('select', 'd')
             ->add('from', 'AcmeSearchBundle:Discs d')->add('where', 'd.artistsAid = :identifier')->setParameter('identifier',$id)
-            ->setMaxResults( 50000 );
+            ->setMaxResults( 5000 );
         $query = $qb->getQuery();
         $discsData = $query->getResult();
 

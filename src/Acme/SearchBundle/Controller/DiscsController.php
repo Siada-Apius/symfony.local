@@ -10,13 +10,13 @@ class DiscsController extends Controller
 {
     public function indexAction()
     {
-
+        $user = $this->container->get('security.context')->getToken()->getUsername();
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder();
 
         $qb ->add('select', 'd')
             ->add('from', 'AcmeSearchBundle:Discs d')
-            ->setMaxResults(50000)
+            ->setMaxResults(5000)
         ;
 
         $query = $qb->getQuery();
@@ -30,11 +30,12 @@ class DiscsController extends Controller
         );
 
         // parameters to template
-        return $this->render('AcmeSearchBundle:Discs:index.html.twig', array('pagination' => $pagination,));
+        return $this->render('AcmeSearchBundle:Discs:index.html.twig', array('pagination' => $pagination,'user'=>$user));
     }
 
     public function viewAction($name,$id,$artistId)
     {
+        $user = $this->container->get('security.context')->getToken()->getUsername();
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder();
 
@@ -43,7 +44,7 @@ class DiscsController extends Controller
             ->add('from', 'AcmeSearchBundle:Artists a')
             ->add('where', 'a.aid = :identifier')
             ->setParameter('identifier',$artistId)
-            ->setMaxResults(50000)
+            ->setMaxResults(5000)
         ;
 
         $query = $qb->getQuery();
@@ -54,7 +55,7 @@ class DiscsController extends Controller
             ->add('from', 'AcmeSearchBundle:Tracks t')
             ->add('where', 't.discsDid = :identifier')
             ->setParameter('identifier',$id)
-            ->setMaxResults(50000)
+            ->setMaxResults(5000)
         ;
 
         $query = $qb->getQuery();
@@ -82,7 +83,7 @@ class DiscsController extends Controller
             'Artist',
         );
 
-        return $this->render('AcmeSearchBundle:Discs:view.html.twig', array('artist'=>$artist,'menu'=>$menu ,'tracks'=>$tracks ,'diskName'=>$name));
+        return $this->render('AcmeSearchBundle:Discs:view.html.twig', array('artist'=>$artist,'menu'=>$menu ,'tracks'=>$tracks ,'diskName'=>$name,'user'=> $user));
     }
 
 }

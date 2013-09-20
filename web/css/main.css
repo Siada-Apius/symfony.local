@@ -1,9 +1,12 @@
 body {
     font: Arial;
+    margin: 0;
+    padding: 0;
+    background-color: #EFEFEF;
 }
 html {
-    min-width: 1024px;
-    min-height: 1024px;
+    min-width: 1220px;
+
 
 
 }
@@ -49,15 +52,12 @@ span.navigation-link {
 }
 
 .sound-but-left {
-margin-left: 16%;
 
 
 }
 
 .sound-but-right {
 
-    margin-right:16%;
-    float: right;
 
 }
 
@@ -80,32 +80,21 @@ margin-left: 16%;
 
 #screw-1-left {
 
-   position: absolute;
-    top: 89px;
-    left: 11%;
-
 }
 
 #screw-2-left {
 
-    position: absolute;
-    top: 177px;
-    left: 11%;
+
 }
 
 
 #screw-1-right{
-    position: absolute;
-    top: 89px;
-    right: 11%;
+    padding-top: 7px;
 }
 
 
 #screw-2-right{
 
-    position: absolute;
-    top: 177px;
-    right: 11%;
 }
 
 #content {
@@ -136,14 +125,6 @@ margin-left: 16%;
 
 }
 
-/*
-#content-wrapper {
-
-    background-color: #EFEFEF;
-}*/
-body {
-    background-color: #EFEFEF;
-}
 
 
 #content-left{
@@ -226,20 +207,16 @@ body {
 
 .search-block {
 
-    position: absolute;
-   /* outline: 1px solid #000000;*/
-    width: 531px;
-    height: 133px;
-    top: 85px;
-    left: 409px;
-
+    width: 40%;
+    margin-left: 30%;
 }
 
 .search-block-small {
     width: 478px;
     height: 70px;
     background-color: #AA9AAD;
-    margin: 32px auto;
+    margin: 37px auto;
+    outline: 1px solid #C8C3CA;
 }
 .required {
     display: none;
@@ -327,11 +304,7 @@ background-image: url('../images/texture.png');
     outline: 1px solid #C8C3CA;
 }
 
-#track-pagination {
-   /* outline: 1px solid #000000;*/
-    margin-left: 244px;
-    width: 230px;
-}
+
 
 #track-title {
     width: 400px;
@@ -408,7 +381,7 @@ background-image: url('../images/texture.png');
 }
 #track-image-screw2 {
 
-    margin: 26% auto;
+  /*  margin: 26% auto;*/
 }
 
 #center-tracks-title form #form_Search {
@@ -446,7 +419,7 @@ background-image: url('../images/texture.png');
     margin: 40px 0;
     height: 52px;
     background-color: #F9F9F9;
-
+    text-align: right;
     text-decoration: none;
     color: #605462;
     font:70% Arial;
@@ -502,6 +475,22 @@ background-image: url('../images/texture.png');
     text-align: center;
 
 }
+
+.index-left-header {
+
+    width: 30% ;
+    height: 100%;
+
+    float: left;
+}
+
+.index-right-header {
+    width: 30%;
+    height:100%;
+
+    float: right;
+}
+
 
 
 

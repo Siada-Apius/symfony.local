@@ -15,7 +15,7 @@ class CategoryController extends Controller
         $qb = $em->createQueryBuilder();
 
 
-        $qb->add('select', 'c')->add('from', 'AcmeSearchBundle:Genres c')->setMaxResults(50000);
+        $qb->add('select', 'c')->add('from', 'AcmeSearchBundle:Genres c')->setMaxResults(5000);
         $query = $qb->getQuery();
         $array = $query->getResult();
 

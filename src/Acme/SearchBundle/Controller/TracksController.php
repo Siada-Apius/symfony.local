@@ -17,7 +17,7 @@ class TracksController extends Controller
 
         $qb->add('select', 'c')
             ->add('from', 'AcmeSearchBundle:Tracks c')
-            ->setMaxResults(50000);
+            ->setMaxResults(5000);
         $query = $qb->getQuery();
         $array = $query->getArrayResult();
 
