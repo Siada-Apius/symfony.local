@@ -257,7 +257,7 @@ background-image: url('../images/texture.png');
 
     margin: 0 auto;
     width: 450px;
-    outline: 1px solid #C8C3CA;
+    border-collapse: collapse;
 }
 
 
@@ -278,6 +278,7 @@ background-image: url('../images/texture.png');
     color: #907F92;
     font: 80% Arial;
     padding: 6px;
+    border: 1px solid #C8C3CA;;
 
 }
 
