@@ -6,23 +6,17 @@ body {
 }
 html {
     min-width: 1220px;
-
-
-
 }
 
 #logo {
     width: 334px;
     height: 76px;
-   /* outline: 1px solid #000000;*/
     float: left;
 }
 
 .navigation-div {
 
-  /*  width: 600px;*/
     height: 76px;
-    /*outline: 1px solid #000000;*/
     margin-left: 378px;
     background-color: #e8e4e6;
     text-align: right;
@@ -30,7 +24,7 @@ html {
 
 
 span.navigation-link {
-   /* outline: 1px solid #000000;*/
+
     width: 200px;
     height: 40px;
     padding: 25px 20px;
@@ -38,7 +32,6 @@ span.navigation-link {
     top: 28px;
     background-color: #e8e4e6;
     font: arial;
-;
 
 }
 .header{
@@ -51,15 +44,6 @@ span.navigation-link {
     background-image:url('../images/texture.png'); ;
 }
 
-.sound-but-left {
-
-
-}
-
-.sound-but-right {
-
-
-}
 
 .sound-search-area {
     width: 1014px;
@@ -78,14 +62,7 @@ span.navigation-link {
 }
 
 
-#screw-1-left {
 
-}
-
-#screw-2-left {
-
-
-}
 
 
 #screw-1-right{
@@ -93,42 +70,29 @@ span.navigation-link {
 }
 
 
-#screw-2-right{
-
-}
-
 #content {
-   /* outline: 1px solid #C8C3CA;*/
-   /* height: 500px;*/
     margin: 50px 50px;
 }
 
 #left-side{
 
     width: 50%;
-   /* height: 300px;*/
     float: left;
-    /*outline: 1px solid #C8C3CA;*/
+
 
 
 }
 
 
 #right-side{
-
     width: 50%;
-   /* height: 300px;*/
-   /* outline: 1px solid #C8C3CA;*/
     margin-left: 50%;
-
-
 
 }
 
 
 
 #content-left{
-    /*outline: 1px solid #C8C3CA;*/
     width: 550px;
     height:671px;
     margin: 0 auto;
@@ -137,7 +101,6 @@ span.navigation-link {
 }
 
 #content-right{
-   /* outline: 1px solid #C8C3CA;*/
     width: 550px;
     height: 617px;
     margin: 0 auto;
@@ -147,14 +110,12 @@ span.navigation-link {
 
     height: 43%;
     width: 100%;
-    /*outline: 1px solid #C8C3CA;*/
 
 }
 #recent-searches {
 
     height: 50%;
     width: 100%;
-   /* outline: 1px solid #C8C3CA;*/
 
 }
 
@@ -194,14 +155,12 @@ span.navigation-link {
 .recent-searches-right-info th,td {
 
     text-align: left;
-   /* vertical-align: top;*/
 
 }
 
 .recent-searches-info th,td {
 
     text-align: left;
-    /*vertical-align: top;*/
 
 }
 
@@ -230,7 +189,7 @@ span.navigation-link {
     height:35px ;
     background: #E9E9E9;
     color: #AA9AAD;
-    font-size: 10pt; /* Размер шрифта в пунктах */
+    font-size: 10pt;
 }
 #form_task {
     position: relative;
@@ -266,13 +225,11 @@ background-image: url('../images/texture.png');
 .tracks-title {
 
     height: 134px;
-   /* outline: 1px solid  #C8C3CA;*/
     background-image: url('../images/texture.png');
 }
 
 .tracks-description {
 
-    /*outline: 1px solid #000000;*/
     width: 35%;
     height: 500px;
     float: left;
@@ -280,7 +237,7 @@ background-image: url('../images/texture.png');
 }
 
 .tracks-list {
-   /* outline: 1px solid #000000;*/
+
     width: 50%;
     margin-left: 50%;
 
@@ -288,13 +245,12 @@ background-image: url('../images/texture.png');
 #track-info{
     height: 50%;
     width: 100%;
-    /*outline: 1px solid #000000;*/
 }
 
 #equalizer{
     height: 50%;
     width: 100%;
-    /*outline: 1px solid #000000;*/
+
 }
 
 #track-table {
@@ -319,11 +275,9 @@ background-image: url('../images/texture.png');
 #track-table th,td {
 
     text-align: left;
-    /* vertical-align: top;*/
     color: #907F92;
     font: 80% Arial;
     padding: 6px;
-   /* border: 1px solid #C8C3CA;*/
 
 }
 
@@ -342,7 +296,6 @@ background-image: url('../images/texture.png');
 
 #left-tracks-title{
 
-    /*border: 1px solid #000000;*/
     width: 45%;float: left;
     height: 134px;
     border-bottom: 1px solid #C8C3CA;
@@ -353,7 +306,6 @@ background-image: url('../images/texture.png');
 
 #right-tracks-title{
 
-   /* border: 1px solid #000000;*/
     width: 28%;
     float: right;
     height: 134px;
@@ -367,7 +319,6 @@ background-image: url('../images/texture.png');
     width: 26%;
     height: 134px;
     margin-left: 45%;
- /*   background-color: #F1EFF1;*/
     background-image: url("../images/texture-white.gif");
     border-right:1px solid #C8C3CA;
     border-left:1px solid #C8C3CA ;
@@ -378,10 +329,6 @@ background-image: url('../images/texture.png');
 
 
     margin: 7% auto;
-}
-#track-image-screw2 {
-
-  /*  margin: 26% auto;*/
 }
 
 #center-tracks-title form #form_Search {
@@ -407,15 +354,8 @@ background-image: url('../images/texture.png');
     margin-top: 13px;
 }
 
-#track-radio {
-
-/*    margin: 40px 0;
-    outline: 1px solid;*/
-}
 .tracks-title-wrapper {
 
- /*   outline: 1px solid;*/
-   /* background-image: url("../images/texture-white.png");*/
     margin: 40px 0;
     height: 52px;
     background-color: #F9F9F9;
@@ -447,12 +387,11 @@ background-image: url('../images/texture.png');
 .artist-table-content {
 
     width: 80%;
-   /* border: 1px solid #000000;*/
     margin: 5px auto;
 }
 
 .artist-table {
-    /*border: 1px solid #000000;*/
+
     width: 50%;
     margin: 0 auto;
     border-collapse: collapse;
@@ -461,7 +400,6 @@ background-image: url('../images/texture.png');
 .artist-table tr td {
 
     border: 1px solid #C8C3CA;
-
 }
 
 .artist-table a {
@@ -473,22 +411,21 @@ background-image: url('../images/texture.png');
 .pagination {
 
     text-align: center;
-
 }
 
 .index-left-header {
 
     width: 30% ;
     height: 100%;
-
     float: left;
 }
 
 .index-right-header {
+
     width: 30%;
     height:100%;
-
     float: right;
+
 }
 
 
