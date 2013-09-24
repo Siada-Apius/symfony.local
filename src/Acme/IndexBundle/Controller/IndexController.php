@@ -34,8 +34,6 @@ class IndexController extends Controller
 
 
 
-
-
             return $this->render('AcmeIndexBundle:Index:index.html.twig', array(
                  'user'=>$user, 'form' => $form->createView()
             ));

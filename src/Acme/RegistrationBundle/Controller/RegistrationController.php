@@ -16,6 +16,8 @@ class RegistrationController extends Controller
     public function registrationAction(Request $request)
     {
 
+        header("Cache-Control: no-store");
+        
         $task = new Task();
         $task->setName('Enter Name');
 
