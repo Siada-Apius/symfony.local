@@ -15,9 +15,9 @@ class RegistrationController extends Controller
 {
     public function registrationAction(Request $request)
     {
+
         $task = new Task();
         $task->setName('Enter Name');
-        #$task->setDueDate(new \DateTime('today'));
 
         $form = $this->createFormBuilder($task)
             ->add('name', 'text')
@@ -28,37 +28,43 @@ class RegistrationController extends Controller
                 'required'  => true,
             ))
 
-            #->add('dueDate', 'date')
             ->add('save', 'submit')
             ->getForm();
 
 
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
 
-        define('STATUS_UNLOCK','unlock');
+        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-        #save in database
+            if ($form->isValid()) {
 
-        $user = new User();
-        $user->setUsername($form['name']->getData());
-        $user->setPassword(sha1($form['password']->getData()));
-        $user->setEmail($form['email']->getData());
-        $user->setStatus(STATUS_UNLOCK);
+                define('STATUS_UNLOCK','unlock');
 
+                #save in database
 
-        $role = new Role();
-        $role->setName($form['role']->getData());
-        $user->addRole($role);
+                $user = new User();
+                $user->setUsername($form['name']->getData());
+                $user->setPassword(sha1($form['password']->getData()));
+                $user->setEmail($form['email']->getData());
+                $user->setStatus(STATUS_UNLOCK);
 
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($role);
-        $em->persist($user);
+                $role = new Role();
+                $role->setName($form['role']->getData());
+                $user->addRole($role);
 
-        $em->flush();
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($role);
+                $em->persist($user);
 
+                $em->flush();
+
+                header("Location:".$_SERVER['PHP_SELF']);
+                die;
+
+            }
         }
+
         return $this->render('AcmeRegistrationBundle:Registration:registration.html.php', array(
            'form' => $form->createView(),
         ));
@@ -74,13 +80,6 @@ class RegistrationController extends Controller
         $request = $this->getRequest();
         $session = $request->getSession();
 
-
-
-
-        #if(){
-
-        #}else{
-        // получить ошибки логина, если таковые имеются
         if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
             $error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
         } else {
@@ -96,12 +95,6 @@ class RegistrationController extends Controller
             )
         );
     }
-    #}
 
-    /*public function LogoutAction()
-    {
-        $name = 'Registration/Logout';
-        return $this->render('AcmeRegistrationBundle:Registration:logout.html.php', array('name' => $name));
-    }*/
 }
 

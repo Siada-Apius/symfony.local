@@ -428,6 +428,19 @@ background-image: url('../images/texture.png');
     float: right;
 
 }
+#popular-playlists-table {
+
+    border-collapse: collapse;
+}
+
+#recent-searches-in-all-songs {
+    border-collapse: collapse;
+}
+
+#recent-searches-in-all-artists {
+    border-collapse: collapse;
+
+}
 
 
 
