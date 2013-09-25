@@ -385,25 +385,25 @@ background-image: url('../images/texture.png');
 }
 
 
-.artist-table-content {
+.table {
 
     width: 80%;
     margin: 5px auto;
 }
 
-.artist-table {
+.default-table {
 
     width: 50%;
     margin: 0 auto;
     border-collapse: collapse;
 }
 
-.artist-table tr td {
+.default-table tr td {
 
     border: 1px solid #C8C3CA;
 }
 
-.artist-table a {
+.default-table a {
 
     color: #605462;
     font: 100% Arial;
@@ -440,6 +440,35 @@ background-image: url('../images/texture.png');
 #recent-searches-in-all-artists {
     border-collapse: collapse;
 
+}
+
+.view-table {
+
+    width: 90%;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.view-table tr td {
+
+    border: 1px solid #C8C3CA;
+}
+
+.view-table a {
+
+    color: #605462;
+    font: 100% Arial;
+}
+
+.right-table {
+    width: 50%;
+    margin-left: 50%;
+}
+
+
+.left-table {
+    width: 50%;
+    float: left;
 }
 
 

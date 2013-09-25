@@ -8,6 +8,7 @@ use Acme\TaskBundle\Helpers\Paginator;
 
 class DiscsController extends Controller
 {
+
     public function indexAction()
     {
         $user = $this->container->get('security.context')->getToken()->getUsername();
@@ -22,6 +23,11 @@ class DiscsController extends Controller
         $query = $qb->getQuery();
         $array = $query->getResult();
 
+        $form = $this->createFormBuilder()
+            ->add('task', 'text')
+            ->add('Search', 'submit')
+            ->getForm();
+
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $array,
@@ -29,15 +35,22 @@ class DiscsController extends Controller
             25/*limit per page*/
         );
 
-        // parameters to template
-        return $this->render('AcmeSearchBundle:Discs:index.html.twig', array('pagination' => $pagination,'user'=>$user));
+        return $this->render('AcmeSearchBundle:Discs:index.html.twig', array('pagination' => $pagination,'user'=>$user,'form'=>$form->createView()));
     }
+
+
+
 
     public function viewAction($name,$id,$artistId)
     {
         $user = $this->container->get('security.context')->getToken()->getUsername();
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder();
+
+        $form = $this->createFormBuilder()
+            ->add('task', 'text')
+            ->add('Search', 'submit')
+            ->getForm();
 
         #Select 'Disc Author'
         $qb ->add('select', 'a')
@@ -83,7 +96,7 @@ class DiscsController extends Controller
             'Artist',
         );
 
-        return $this->render('AcmeSearchBundle:Discs:view.html.twig', array('artist'=>$artist,'menu'=>$menu ,'tracks'=>$tracks ,'diskName'=>$name,'user'=> $user));
+        return $this->render('AcmeSearchBundle:Discs:view.html.twig', array('artist'=>$artist,'menu'=>$menu ,'tracks'=>$tracks ,'diskName'=>$name,'user'=> $user,'form'=>$form->createView()));
     }
 
 }

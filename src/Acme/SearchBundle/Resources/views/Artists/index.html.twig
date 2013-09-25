@@ -79,12 +79,12 @@
 
     <div id="content">
 
-        <div class="artist-table-content">
+        <div class="table">
 
-        <table class="artist-table">
+        <table class="default-table">
 
             <tr>
-                <td>Artist</td>
+                <td>Artists</td>
             </tr>
 
 
@@ -92,7 +92,7 @@
             {% for value in pagination %}
 
                 <tr>
-                    <td class="artists"><a href="{{ path('SearchBundle_artist_view', { 'name': value.aname, 'id': value.aid } ) }}">{{ value.aname }}</a></td>
+                    <td class="color"><a href="{{ path('SearchBundle_artist_view', { 'name': value.aname, 'id': value.aid } ) }}">{{ value.aname }}</a></td>
                 </tr>
 
             {% endfor %}
@@ -115,7 +115,7 @@
 
         $(document).ready(function(){
 
-            $(".artists:even").css("background-color", "#FFFFFF");
+            $(".color:even").css("background-color", "#FFFFFF");
 
         })
 

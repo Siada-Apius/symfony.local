@@ -10,7 +10,7 @@ class CategoryController extends Controller
 {
     public function indexAction()
     {
-
+        $user = $this->container->get('security.context')->getToken()->getUsername();
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder();
 
@@ -18,6 +18,11 @@ class CategoryController extends Controller
         $qb->add('select', 'c')->add('from', 'AcmeSearchBundle:Genres c')->setMaxResults(5000);
         $query = $qb->getQuery();
         $array = $query->getResult();
+
+        $form = $this->createFormBuilder()
+            ->add('task', 'text')
+            ->add('Search', 'submit')
+            ->getForm();
 
 
         $paginator  = $this->get('knp_paginator');
@@ -28,19 +33,23 @@ class CategoryController extends Controller
         );
 
         // parameters to template
-        return $this->render('AcmeSearchBundle:Category:index.html.twig', array('pagination' => $pagination,));
+        return $this->render('AcmeSearchBundle:Category:index.html.twig', array('pagination' => $pagination,'user'=>$user,'form'=>$form->createView()));
 
     }
 
 
     public function viewAction($name,$id)
     {
-
+        $user = $this->container->get('security.context')->getToken()->getUsername();
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder();
 
+        $form = $this->createFormBuilder()
+            ->add('task', 'text')
+            ->add('Search', 'submit')
+            ->getForm();
 
-        #Select ''
+
         $qb->add('select', 't')->add('from', 'AcmeSearchBundle:Discs t')->add('where', 't.genresGid = :identifier')->setParameter('identifier',$id)->setMaxResults(5000);
         $query = $qb->getQuery();
         $discData  = $query->getArrayResult();
@@ -56,6 +65,10 @@ class CategoryController extends Controller
             $artisData[]  = $query->getArrayResult();
 
         }
+/*        #@$artisData = array_unique($artisData);
+       echo '<pre>';
+        print_r($artisData);die;*/
+
 
             $array = array($discData,$artisData);
 
@@ -78,7 +91,7 @@ class CategoryController extends Controller
 
 
         // parameters to template
-        return $this->render('AcmeSearchBundle:Category:view.html.twig', array('categoryName'=>$name, 'dataData'=>$discData,'artisData'=>$artisData,'discpaginator' => $Discpaginator,'artistpaginator' => $Artistpaginator));
+        return $this->render('AcmeSearchBundle:Category:view.html.twig', array('categoryName'=>$name, 'dataData'=>$discData,'artisData'=>$artisData,'discpaginator' => $Discpaginator,'artistpaginator' => $Artistpaginator,'user'=>$user,'form'=>$form->createView()));
 
     }
 

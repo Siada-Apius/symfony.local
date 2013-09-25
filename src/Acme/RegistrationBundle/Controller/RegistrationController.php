@@ -17,7 +17,7 @@ class RegistrationController extends Controller
     {
 
         header("Cache-Control: no-store");
-        
+
         $task = new Task();
         $task->setName('Enter Name');
 

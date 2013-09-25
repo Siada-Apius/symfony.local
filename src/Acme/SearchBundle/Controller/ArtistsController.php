@@ -20,7 +20,6 @@ class ArtistsController extends Controller
             ->setMaxResults( 5000 );
         $query = $qb->getQuery();
         $array = $query->getArrayResult();
-        #print_r($array);die;
 
         $form = $this->createFormBuilder()
             ->add('task', 'text')
