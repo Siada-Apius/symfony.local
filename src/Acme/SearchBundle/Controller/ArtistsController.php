@@ -48,6 +48,11 @@ class ArtistsController extends Controller
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder();
 
+        $form = $this->createFormBuilder()
+            ->add('task', 'text')
+            ->add('Search', 'submit')
+            ->getForm();
+
         $qb->add('select', 'd')
             ->add('from', 'AcmeSearchBundle:Discs d')->add('where', 'd.artistsAid = :identifier')->setParameter('identifier',$id)
             ->setMaxResults( 5000 );
@@ -64,7 +69,7 @@ class ArtistsController extends Controller
 
 
         // parameters to template
-        return $this->render('AcmeSearchBundle:Artists:view.html.twig', array('artistName'=>$name,'discsData'=>$discsData,'pagination' => $pagination, 'user'=>$user));
+        return $this->render('AcmeSearchBundle:Artists:view.html.twig', array('artistName'=>$name,'discsData'=>$discsData,'pagination' => $pagination, 'user'=>$user,'form'=>$form->createView()));
     }
 
 }

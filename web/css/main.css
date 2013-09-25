@@ -391,6 +391,7 @@ background-image: url('../images/texture.png');
     margin: 5px auto;
 }
 
+
 .default-table {
 
     width: 50%;
@@ -469,6 +470,25 @@ background-image: url('../images/texture.png');
 .left-table {
     width: 50%;
     float: left;
+}
+
+
+.big-table {
+
+    width: 90%;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.big-table tr td {
+
+    border: 1px solid #C8C3CA;
+}
+
+.big-table a {
+
+    color: #605462;
+    font: 100% Arial;
 }
 
 

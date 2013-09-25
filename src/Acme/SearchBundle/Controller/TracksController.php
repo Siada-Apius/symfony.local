@@ -29,14 +29,14 @@ class TracksController extends Controller
             25/*limit per page*/
         );
 
-        $tracksSearchForm = $this->createFormBuilder()
+        $form = $this->createFormBuilder()
             ->add('task', 'text')
             ->add('Search', 'submit')
             ->getForm();
 
         // parameters to template
 
-        return $this->render('AcmeSearchBundle:Tracks:index.html.twig', array('pagination' => $pagination,'user'=>$user,'tracksSearchForm'=>$tracksSearchForm->createView()));
+        return $this->render('AcmeSearchBundle:Tracks:index.html.twig', array('pagination' => $pagination,'user'=>$user,'form'=>$form->createView()));
 
     }
 
@@ -48,6 +48,11 @@ class TracksController extends Controller
         $user = $this->container->get('security.context')->getToken()->getUsername();
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder();
+
+        $form = $this->createFormBuilder()
+            ->add('task', 'text')
+            ->add('Search', 'submit')
+            ->getForm();
 
         #Select 'Track Title'
         $qb->add('select', 't')->add('from', 'AcmeSearchBundle:Tracks t')->add('where', 't.ttitle = :identifier')->setParameter('identifier',$title)->setMaxResults(1);
@@ -84,7 +89,7 @@ class TracksController extends Controller
 
 
 
-        return $this->render('AcmeSearchBundle:Tracks:view.html.twig', array('data'=>$data,'user'=>$user,));
+        return $this->render('AcmeSearchBundle:Tracks:view.html.twig', array('data'=>$data,'user'=>$user,'form'=>$form->createView()));
 
     }
 
