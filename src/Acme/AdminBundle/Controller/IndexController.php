@@ -13,30 +13,30 @@ class IndexController extends Controller
 {
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+
         $user = $this->container->get('security.context')->getToken()->getUsername();
+        $em = $this->getDoctrine()->getManager();
 
         $query = $em->createQuery("SELECT u.status FROM Acme\RegistrationBundle\Entity\User u WHERE u.username = '".$user."'");
         $userStatusArray = $query->getResult();
 
-
         if($user != 'anon.' AND $userStatusArray['0']['status'] == 'lock'){
             throw $this->createNotFoundException('Your account is blocked.');
         }else{
-            return $this->render('AcmeAdminBundle:Index:index.html.php', array());
+            return $this->render('AcmeAdminBundle:Index:index.html.twig', array('user'=>$user,));
         }
 
     }
 
     public function userAction(){
 
-        define('STATUS_LOCK','lock');
-        define('STATUS_UNLOCK','unlock');
-        define('STATUS_DELETE','delete');
-
+        $user = $this->container->get('security.context')->getToken()->getUsername();
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder();
 
+        define('STATUS_LOCK','lock');
+        define('STATUS_UNLOCK','unlock');
+        define('STATUS_DELETE','delete');
 
          $qb->add('select', 'u')
             ->add('from', 'Acme\RegistrationBundle\Entity\User u')
@@ -46,7 +46,7 @@ class IndexController extends Controller
 
 
 
-        return $this->render('AcmeAdminBundle:Index:user.html.twig', array('entities' => $array,'lock' => STATUS_LOCK ,'unlock'=> STATUS_UNLOCK , 'delete'=> STATUS_DELETE ));
+        return $this->render('AcmeAdminBundle:Index:user.html.twig', array('entities' => $array,'lock' => STATUS_LOCK ,'unlock'=> STATUS_UNLOCK , 'delete'=> STATUS_DELETE,'user'=>$user));
 
     }
                     #edit user status(lock,unlock,delete)

@@ -1,35 +1,43 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Users</h1>
 
-    <table class="records_list table table-bordered">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Status</th>
-            <th>Edit</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
+    <div style="margin-top: 45px;text-align: center">
+        <span style="color: #605462;font: 150% Arial;">Users</span>
+    </div>
+
+    <div id="content">
+
+        <table class="admin-table"">
+
+
             <tr>
-                <td>{{ entity.id }}</td>
-                <td>{{ entity.username }}</td>
-                <td>{{ entity.email }}</td>
-                <td>{{ entity.status }}</td>
-                <td>
-                    <a href="users/edit/{{ entity.id }}/{{ lock }}">Lock user</a><br>
-                    <a href="users/edit/{{ entity.id }}/{{ unlock }}">Unlock user</a><br>
-                    <a href="users/edit/{{ entity.id }}/{{ delete }}">Delete</a>
-                </td>
+                <td>Id</td>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Status</td>
+                <td>Edit</td>
             </tr>
 
-        {% endfor %}
-        </tbody>
-    </table>
+
+            {% for entity in entities %}
+                <tr>
+                    <td>{{ entity.id }}</td>
+                    <td>{{ entity.username }}</td>
+                    <td>{{ entity.email }}</td>
+                    <td>{{ entity.status }}</td>
+                    <td>
+                        <a style="color: blue" href="users/edit/{{ entity.id }}/{{ lock }}">Lock user</a><br>
+                        <a style="color: blue" href="users/edit/{{ entity.id }}/{{ unlock }}">Unlock user</a><br>
+                        <a style="color: blue" href="users/edit/{{ entity.id }}/{{ delete }}">Delete</a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
 
 
 {% endblock %}

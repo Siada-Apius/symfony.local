@@ -17,9 +17,9 @@ class RegistrationController extends Controller
     {
 
         header("Cache-Control: no-store");
+        $user = $this->container->get('security.context')->getToken()->getUsername();
 
         $task = new Task();
-        $task->setName('Enter Name');
 
         $form = $this->createFormBuilder($task)
             ->add('name', 'text')
@@ -67,8 +67,8 @@ class RegistrationController extends Controller
             }
         }
 
-        return $this->render('AcmeRegistrationBundle:Registration:registration.html.php', array(
-           'form' => $form->createView(),
+        return $this->render('AcmeRegistrationBundle:Registration:registration.html.twig', array(
+           'form' => $form->createView(),'user' => $user
         ));
 
 
@@ -88,12 +88,15 @@ class RegistrationController extends Controller
             $error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
         }
 
+        $user = $this->container->get('security.context')->getToken()->getUsername();
+
         return $this->render(
             'AcmeRegistrationBundle:Registration:login.html.php',
             array(
                 // last username entered by the user
                 'last_username' => $session->get(SecurityContext::LAST_USERNAME),
                 'error'         => $error,
+                'user'          => $user
             )
         );
     }

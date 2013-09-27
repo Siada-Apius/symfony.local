@@ -1,0 +1,28 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+    <div id="content">
+
+    <div>
+
+
+            <div class="form-div">
+
+                <div style="width: 110px;float: left; text-align: right;">
+                    <p>Name :</p>
+                    <p>Email :</p>
+                    <p>Password :</p>
+                    <p>Role :</p>
+
+                </div>
+
+                <div style="width: 207px;margin-left: 115px">
+
+                    {{ form(form) }}
+
+                </div>
+            </div>
+    </div>
+</div>
+{% endblock %}

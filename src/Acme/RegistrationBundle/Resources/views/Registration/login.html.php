@@ -1,31 +1,44 @@
-<div class="navbar nav-tabs alert-info">
-    <?php $view->extend('::base.html.php') ?>
-</div>
+    <div class="navbar nav-tabs alert-info">
+        <?php $view->extend('::base.html.php') ?>
+    </div>
 
 
 <?php if ($error): ?>
-    <div><?php echo $error->getMessage() ?></div>
-<?php endif; ?>
-<div class="navbar nav-tabs">
-    <div class="container border">
-        <a class="brand" href="<?php echo $view['router']->generate('acme_index_homepage') ?>">Index Symfony2</a>
+
+    <div>
+        <?php echo $error->getMessage() ?>
     </div>
-</div>
 
-<div class="well span3">
-    <form action="<?php echo $view['router']->generate('login_check') ?>" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="_username" value="<?php echo $last_username ?>" />
+<?php endif; ?>
+    <div id="content">
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="_password" />
+        <div class="login-form-div">
 
-        <!--
-            Если вы хотите контролировать URL, на который перенаправить пользователя:
-            <input type="hidden" name="_target_path" value="/account" />
-        -->
+            <form action="<?php echo $view['router']->generate('login_check') ?>" method="post">
 
-        <input type="submit" value="Login" name="login" class="btn btn-info"/>
-    </form>
-</div>
+                <div style="margin: 5px 0 5px 60px">
+
+                    <label for="username">Username:</label>
+
+                    <input height="20px" type="text" id="username" name="_username" value="<?php echo $last_username ?>" />
+
+                </div>
+
+                <div style="margin: 5px 0 5px 64px;">
+
+                    <label for="password">Password:</label>
+
+                    <input height="20px;" type="password" id="password" name="_password" />
+
+                </div>
+
+                <div>
+                    <input type="submit" value="Login" name="login" class="login-button"/>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
 

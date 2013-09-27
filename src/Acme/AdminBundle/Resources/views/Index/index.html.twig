@@ -1,0 +1,48 @@
+{% extends "AcmeSearchBundle::layout.html.twig" %}
+
+{% block tutorial_body %}
+
+    <div class="header">
+
+
+        <div class="admin-navigation-div">
+
+
+            {% if user != 'anon.' %}
+
+                {% set items = {
+
+                'Users': '/admin/users',
+                'Test': '',
+                'Test1': '',
+                'Test2': '',
+                'Test3': '',
+                'Test4': '',
+
+                } %}
+            {% else %}
+
+                {% set items = { 'All Tracks': '/tracks',
+                'Login': '/login',
+                'Registration': '/registration',
+                } %}
+
+
+            {% endif %}
+
+            {% for  key, link in items %}
+
+                <span class="admin-link"><a style="color: blue;font:  80% Arial;" href="{{ link }}" >{{ key }}</a></span>
+
+            {% endfor %}
+
+
+
+        </div>
+
+    </div>
+
+
+
+
+{% endblock %}
